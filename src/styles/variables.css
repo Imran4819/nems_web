@@ -1,0 +1,66 @@
+:root {
+  /* Brand Navy Palette */
+  --color-navy-dark: #071527;
+  --color-navy-base: #0B2545;
+  --color-navy-medium: #133966;
+  --color-navy-light: #1D4E89;
+  --color-navy-surface: #0E294B;
+
+  /* Brand Academic Gold Palette */
+  --color-gold-deep: #A37E36;
+  --color-gold-base: #C5A059;
+  --color-gold-light: #DFC285;
+  --color-gold-soft: #F4EAD4;
+  --color-gold-glow: rgba(197, 160, 89, 0.25);
+
+  /* Neutrals & Surfaces */
+  --color-bg-main: #FFFFFF;
+  --color-bg-subtle: #F8FAFC;
+  --color-bg-card: #FFFFFF;
+  --color-bg-elevated: #F1F5F9;
+  
+  /* Text & Contrast */
+  --color-text-title: #0F172A;
+  --color-text-body: #334155;
+  --color-text-muted: #64748B;
+  --color-text-white: #FFFFFF;
+  --color-text-gold: #C5A059;
+
+  /* Borders & Accents */
+  --color-border-subtle: #E2E8F0;
+  --color-border-card: rgba(226, 232, 240, 0.8);
+  --color-border-gold: rgba(197, 160, 89, 0.35);
+
+  /* Semantic */
+  --color-success: #10B981;
+  --color-success-bg: #ECFDF5;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Elevation & Shadows */
+  --shadow-sm: 0 1px 3px rgba(11, 37, 69, 0.06);
+  --shadow-md: 0 4px 16px -2px rgba(11, 37, 69, 0.08), 0 2px 6px -1px rgba(11, 37, 69, 0.04);
+  --shadow-lg: 0 12px 30px -4px rgba(11, 37, 69, 0.12), 0 4px 12px -2px rgba(11, 37, 69, 0.06);
+  --shadow-xl: 0 20px 40px -6px rgba(11, 37, 69, 0.18);
+  --shadow-gold: 0 8px 24px -4px rgba(197, 160, 89, 0.35);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-base: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --container-max: 1240px;
+  --container-padding: 1.5rem;
+}
