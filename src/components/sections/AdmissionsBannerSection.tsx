@@ -1,5 +1,6 @@
 import React from 'react';
-import { Calendar, FileCheck, Users, GraduationCap, ArrowRight } from 'lucide-react';
+import { Calendar, FileCheck, Users, GraduationCap, ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import { ADMISSION_REQUIREMENTS } from '../../data/schoolData';
 
 interface AdmissionsBannerSectionProps {
   onOpenAdmissionModal: () => void;
@@ -10,19 +11,19 @@ export const AdmissionsBannerSection: React.FC<AdmissionsBannerSectionProps> = (
     {
       num: '01',
       title: 'Online Inquiry / Registration',
-      desc: 'Submit the registration form or visit our campus admissions office.',
+      desc: 'Submit the admission inquiry form online or obtain the prospectus from our campus office.',
       icon: <FileCheck size={20} />,
     },
     {
       num: '02',
-      title: 'Campus Tour & Interaction',
-      desc: 'Meet our academic coordinators and tour classrooms and STEM laboratories.',
+      title: 'Campus Interaction & Verification',
+      desc: 'Mandatory in-person meeting of candidate with parents; review of original certificates.',
       icon: <Users size={20} />,
     },
     {
       num: '03',
-      title: 'Seat Confirmation & Welcome',
-      desc: 'Complete documentation, uniform & textbook kit allotment for Session 2025–26.',
+      title: 'Seat Confirmation & Welcome Kit',
+      desc: 'Confirmation of admission, division allotment, school diary, and uniform guidance.',
       icon: <GraduationCap size={20} />,
     },
   ];
@@ -64,7 +65,7 @@ export const AdmissionsBannerSection: React.FC<AdmissionsBannerSectionProps> = (
           </h2>
 
           <p style={{ color: 'rgba(255, 255, 255, 0.82)', fontSize: '1.05rem', lineHeight: '1.65' }}>
-            Limited seats available across Classes I to X. Early application is advised as sections are strictly capped at 25 students per class to ensure personalized faculty attention.
+            Admissions open for Pre-Primary (Nursery, Jr. KG, Sr. KG) up to Secondary Classes. Limited intake per classroom to guarantee individual teacher mentoring and 100% board success.
           </p>
         </div>
 
@@ -74,7 +75,7 @@ export const AdmissionsBannerSection: React.FC<AdmissionsBannerSectionProps> = (
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '2rem',
-            marginBottom: '3.5rem',
+            marginBottom: '3rem',
           }}
           className="steps-grid"
         >
@@ -130,6 +131,57 @@ export const AdmissionsBannerSection: React.FC<AdmissionsBannerSectionProps> = (
           ))}
         </div>
 
+        {/* Required Documents Checklist from Wix Notice */}
+        <div
+          style={{
+            backgroundColor: 'rgba(7, 21, 39, 0.8)',
+            borderRadius: 'var(--radius-xl)',
+            padding: '2.5rem',
+            border: '1px solid rgba(197, 160, 89, 0.35)',
+            marginBottom: '3rem',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '1.25rem' }}>
+            <AlertCircle size={22} color="var(--color-gold-base)" />
+            <h3 style={{ fontSize: '1.35rem', color: '#FFFFFF', margin: 0 }}>
+              Mandatory Admission Documents Checklist
+            </h3>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '1rem',
+            }}
+          >
+            {ADMISSION_REQUIREMENTS.map((req, i) => (
+              <div
+                key={i}
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '0.75rem',
+                  padding: '1rem',
+                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                  borderRadius: 'var(--radius-md)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                }}
+              >
+                <CheckCircle2 size={18} color="var(--color-gold-base)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: '0.94rem', color: 'var(--color-gold-light)' }}>
+                    {req.doc}
+                  </div>
+                  <div style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.75)', marginTop: '2px' }}>
+                    {req.desc}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Action Callout */}
         <div
           style={{
@@ -145,7 +197,7 @@ export const AdmissionsBannerSection: React.FC<AdmissionsBannerSectionProps> = (
           }}
         >
           <div style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-gold-light)' }}>
-            Last Date for Phase-1 Online Applications: <strong>31 July 2025</strong>
+            Admissions Office at Kolhewadi Road Campus open Monday to Saturday, 8:00 AM – 5:00 PM
           </div>
           <button
             onClick={onOpenAdmissionModal}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { BookOpen, CheckCircle2, GraduationCap } from 'lucide-react';
-import { ACADEMIC_PROGRAMS } from '../../data/schoolData';
+import { BookOpen, CheckCircle2, GraduationCap, ClipboardCheck } from 'lucide-react';
+import { ACADEMIC_PROGRAMS, EXAM_PATTERN } from '../../data/schoolData';
 import { SectionHeader } from '../common/SectionHeader';
 
 interface AcademicsSectionProps {
@@ -15,10 +15,10 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
     <section id="academics" className="section section-alt">
       <div className="container">
         <SectionHeader
-          eyebrow="Curriculum & Pedagogy"
-          title="Structured Excellence: Classes I to X"
-          highlightWord="Classes I to X"
-          description="A progressive, continuous academic pathway engineered to cultivate foundational mastery, analytical thought, and board examination distinction."
+          eyebrow="Maharashtra State Board Curriculum"
+          title="Structured Excellence: Pre-Primary to Class X"
+          highlightWord="Pre-Primary to Class X"
+          description="Affiliated to MSBSHSE Pune. An intensive academic pathway engineered to cultivate foundational mastery, spoken English fluency, and 100% board examination distinction."
         />
 
         {/* Level Tabs */}
@@ -65,13 +65,14 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
             gridTemplateColumns: '1.2fr 1fr',
             gap: '2.5rem',
             borderTop: '4px solid var(--color-gold-base)',
+            marginBottom: '3.5rem',
           }}
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
               <span className="badge badge-gold">{activeProgram.grades}</span>
               <span style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', fontWeight: 600 }}>
-                English Medium Curriculum
+                English Medium · Maharashtra State Board
               </span>
             </div>
 
@@ -97,7 +98,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
 
             <button onClick={onOpenAdmissionModal} className="btn btn-primary" style={{ width: 'auto' }}>
               <GraduationCap size={18} />
-              <span>Enroll for {activeProgram.grades}</span>
+              <span>Apply for {activeProgram.grades}</span>
             </button>
           </div>
 
@@ -154,8 +155,82 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
                 color: 'var(--color-text-muted)',
               }}
             >
-              Continuous formative assessment (CFA) conducted every quarter alongside laboratory practicals and mental arithmetic tests.
+              Includes continuous unit tests, drawing grade prep, handwriting, and digital audio-visual lessons.
             </div>
+          </div>
+        </div>
+
+        {/* Examination & Evaluation Pattern */}
+        <div
+          style={{
+            backgroundColor: '#FFFFFF',
+            borderRadius: 'var(--radius-xl)',
+            padding: '2.5rem',
+            border: '1px solid var(--color-border-subtle)',
+            boxShadow: 'var(--shadow-sm)',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+            <ClipboardCheck size={24} color="var(--color-navy-base)" />
+            <div>
+              <h4 style={{ fontSize: '1.3rem', color: 'var(--color-navy-base)', margin: 0 }}>
+                {EXAM_PATTERN.title}
+              </h4>
+              <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', margin: 0 }}>
+                Standard evaluation schedule for Std. I to IX leading into Class X SSC Board Examinations.
+              </p>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+              gap: '1rem',
+            }}
+          >
+            {EXAM_PATTERN.structure.map((item) => (
+              <div
+                key={item.exam}
+                style={{
+                  backgroundColor: 'var(--color-bg-subtle)',
+                  borderRadius: 'var(--radius-md)',
+                  padding: '1rem',
+                  border: '1px solid #E2E8F0',
+                  textAlign: 'center',
+                }}
+              >
+                <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>
+                  {item.timing}
+                </div>
+                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--color-navy-base)', marginTop: '4px' }}>
+                  {item.exam}
+                </div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--color-gold-base)', fontWeight: 700, marginTop: '4px' }}>
+                  {item.marks}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div
+            style={{
+              marginTop: '1.25rem',
+              padding: '0.85rem 1.25rem',
+              backgroundColor: 'rgba(11, 37, 69, 0.04)',
+              borderRadius: 'var(--radius-md)',
+              fontSize: '0.85rem',
+              color: 'var(--color-navy-base)',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '0.5rem',
+            }}
+          >
+            <span>{EXAM_PATTERN.boardGrade}</span>
+            <span style={{ color: 'var(--color-gold-base)' }}>100% Pass Percentage Record</span>
           </div>
         </div>
       </div>

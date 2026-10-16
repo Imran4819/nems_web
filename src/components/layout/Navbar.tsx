@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, GraduationCap, ChevronRight, Phone, Mail } from 'lucide-react';
+import { Menu, X, ChevronRight, Phone, Mail } from 'lucide-react';
 import { NAV_LINKS } from '../../data/navigation';
 import { CONTACT_INFO } from '../../data/schoolData';
 import { useScrollPosition } from '../../hooks/useScrollPosition';
@@ -43,9 +43,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
           position: 'sticky',
           top: 0,
           zIndex: 900,
-          backgroundColor: '#FFFFFF',
-          boxShadow: isScrolled ? '0 4px 20px rgba(11, 37, 69, 0.08)' : '0 1px 3px rgba(11, 37, 69, 0.04)',
-          transition: 'all 0.3s ease',
+          backgroundColor: isScrolled
+            ? 'rgba(7, 21, 39, 0.94)'
+            : 'rgba(7, 21, 39, 0.35)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          borderBottom: isScrolled
+            ? '1px solid rgba(197, 160, 89, 0.25)'
+            : '1px solid rgba(255, 255, 255, 0.1)',
+          boxShadow: isScrolled ? '0 6px 24px rgba(0, 0, 0, 0.35)' : 'none',
+          transition: 'all 0.35s ease',
         }}
       >
         <div
@@ -58,23 +65,29 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
             paddingBottom: '0.75rem',
           }}
         >
-          {/* Brand Logo matching Figma Make */}
+          {/* Brand Logo */}
           <a href="#home" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div
               style={{
-                width: '44px',
-                height: '44px',
-                backgroundColor: 'var(--color-navy-base)',
+                width: '46px',
+                height: '46px',
                 borderRadius: '8px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 3px 8px rgba(11, 37, 69, 0.2)',
+                boxShadow: '0 3px 8px rgba(0, 0, 0, 0.25)',
+                backgroundColor: '#FFFFFF',
                 border: '1.5px solid var(--color-gold-base)',
                 flexShrink: 0,
+                overflow: 'hidden',
+                padding: '2px',
               }}
             >
-              <GraduationCap size={26} color="var(--color-gold-base)" />
+              <img
+                src="/assets/images/nems-logo.png"
+                alt="NEMS Logo"
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span
@@ -82,25 +95,26 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
                   fontFamily: 'var(--font-serif)',
                   fontSize: 'clamp(1.2rem, 3.5vw, 1.55rem)',
                   fontWeight: 800,
-                  color: 'var(--color-navy-base)',
+                  color: '#FFFFFF',
                   letterSpacing: '0.02em',
                   lineHeight: 1.1,
+                  textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
                 }}
               >
-                NATION
+                N.E.M.S.
               </span>
               <span
                 style={{
                   fontFamily: 'var(--font-sans)',
-                  fontSize: 'clamp(0.6rem, 1.8vw, 0.68rem)',
+                  fontSize: 'clamp(0.58rem, 1.6vw, 0.68rem)',
                   fontWeight: 700,
-                  color: 'var(--color-text-muted)',
-                  letterSpacing: '0.12em',
+                  color: 'var(--color-gold-light)',
+                  letterSpacing: '0.06em',
                   textTransform: 'uppercase',
                   marginTop: '2px',
                 }}
               >
-                English Medium School · Sangamner
+                National English Medium School · Sangamner
               </span>
             </div>
           </a>
@@ -123,9 +137,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
                   style={{
                     fontSize: '0.9rem',
                     fontWeight: isActive ? 700 : 500,
-                    color: isActive ? 'var(--color-navy-base)' : 'var(--color-text-body)',
+                    color: isActive ? 'var(--color-gold-light)' : 'rgba(255, 255, 255, 0.9)',
                     position: 'relative',
                     padding: '0.4rem 0',
+                    transition: 'color 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) e.currentTarget.style.color = '#FFFFFF';
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) e.currentTarget.style.color = 'rgba(255, 255, 255, 0.9)';
                   }}
                 >
                   {link.label}
@@ -139,6 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
                         height: '2.5px',
                         backgroundColor: 'var(--color-gold-base)',
                         borderRadius: '2px',
+                        boxShadow: '0 0 8px rgba(197, 160, 89, 0.8)',
                       }}
                     />
                   )}
@@ -155,7 +177,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
             </button>
           </nav>
 
-          {/* Mobile Hamburger Button to trigger Left Sidebar */}
+          {/* Mobile Hamburger Button */}
           <button
             className="mobile-toggle"
             onClick={() => setMobileMenuOpen(true)}
@@ -164,7 +186,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
               display: 'none',
               padding: '10px',
               borderRadius: '8px',
-              backgroundColor: '#F1F5F9',
+              backgroundColor: 'rgba(255, 255, 255, 0.12)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
               alignItems: 'center',
               justifyContent: 'center',
               minWidth: '44px',
@@ -172,7 +195,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
               cursor: 'pointer',
             }}
           >
-            <Menu size={22} color="var(--color-navy-base)" />
+            <Menu size={22} color="#FFFFFF" />
           </button>
         </div>
       </header>
@@ -203,17 +226,23 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
             <div
               style={{
-                width: '38px',
-                height: '38px',
-                backgroundColor: 'var(--color-navy-base)',
+                width: '42px',
+                height: '42px',
                 borderRadius: '6px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                backgroundColor: '#FFFFFF',
                 border: '1px solid var(--color-gold-base)',
+                overflow: 'hidden',
+                padding: '2px',
               }}
             >
-              <GraduationCap size={22} color="var(--color-gold-base)" />
+              <img
+                src="/assets/images/nems-logo.png"
+                alt="NEMS Logo"
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
             </div>
             <div>
               <div
@@ -225,7 +254,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
                   lineHeight: 1,
                 }}
               >
-                NATION
+                NEMS SANGAMNER
               </div>
               <div
                 style={{
@@ -237,7 +266,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
                   marginTop: '2px',
                 }}
               >
-                Sangamner Campus
+                Allied Education Society
               </div>
             </div>
           </div>

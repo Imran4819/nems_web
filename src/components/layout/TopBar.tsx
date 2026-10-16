@@ -10,11 +10,15 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenAdmissionModal }) => {
   return (
     <div
       style={{
-        backgroundColor: 'var(--color-navy-dark)',
+        backgroundColor: 'rgba(7, 21, 39, 0.55)',
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
         color: 'rgba(255, 255, 255, 0.9)',
         fontSize: '0.82rem',
         padding: '0.55rem 0',
         borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        position: 'relative',
+        zIndex: 901,
       }}
     >
       <div className="container topbar-content" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.65rem' }}>
@@ -26,6 +30,11 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenAdmissionModal }) => {
             <Phone size={14} color="var(--color-gold-base)" />
             <span>{CONTACT_INFO.phone}</span>
           </a>
+          {CONTACT_INFO.landline && (
+            <span style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.78rem' }}>
+              Tel: {CONTACT_INFO.landline}
+            </span>
+          )}
           <a
             href={`mailto:${CONTACT_INFO.email}`}
             style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: 'rgba(255, 255, 255, 0.85)' }}

@@ -47,15 +47,15 @@ export const ContactSection: React.FC = () => {
             }}
           >
             <span className="badge badge-gold-dark" style={{ marginBottom: '1.25rem' }}>
-              Campus Information
+              Allied Education Society Campus
             </span>
 
             <h3 style={{ fontSize: '1.65rem', color: '#FFFFFF', marginBottom: '1rem' }}>
-              Visit Nation English Medium School
+              National English Medium School (NEMS)
             </h3>
 
             <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '0.94rem', lineHeight: '1.6', marginBottom: '2rem' }}>
-              Our administration reception is located in the Central Academic Wing. Prior appointment is appreciated for meeting the Principal or Academic Coordinators.
+              Located at Kolhewadi Road, Sangamner. Parents and guardians are invited to visit the campus during office hours for admissions and inquiries.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
@@ -101,11 +101,19 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--color-gold-light)', fontWeight: 700, textTransform: 'uppercase' }}>
-                    Admissions Desk
+                    Contact Numbers
                   </div>
                   <div style={{ fontSize: '0.95rem', color: '#FFFFFF', marginTop: '2px' }}>
-                    {CONTACT_INFO.phone}
+                    <a href={`tel:${CONTACT_INFO.phone}`} style={{ color: '#FFFFFF' }}>{CONTACT_INFO.phone}</a>
+                    {CONTACT_INFO.altPhone && (
+                      <span> · <a href={`tel:${CONTACT_INFO.altPhone}`} style={{ color: '#FFFFFF' }}>{CONTACT_INFO.altPhone}</a></span>
+                    )}
                   </div>
+                  {CONTACT_INFO.landline && (
+                    <div style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.75)', marginTop: '2px' }}>
+                      Landline: {CONTACT_INFO.landline}
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -129,7 +137,7 @@ export const ContactSection: React.FC = () => {
                     Official Email
                   </div>
                   <div style={{ fontSize: '0.95rem', color: '#FFFFFF', marginTop: '2px' }}>
-                    {CONTACT_INFO.email}
+                    <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: '#FFFFFF' }}>{CONTACT_INFO.email}</a>
                   </div>
                 </div>
               </div>

@@ -13,10 +13,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
       style={{
         position: 'relative',
         backgroundColor: 'var(--color-navy-dark)',
-        backgroundImage: `linear-gradient(to right, rgba(7, 21, 39, 0.94) 0%, rgba(11, 37, 69, 0.85) 60%, rgba(11, 37, 69, 0.72) 100%), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80')`,
+        backgroundImage: `linear-gradient(to right, rgba(7, 21, 39, 0.92) 0%, rgba(11, 37, 69, 0.82) 55%, rgba(11, 37, 69, 0.65) 100%), url('/assets/images/Indian%20School%20Assembly%20Ceremony.png')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        paddingTop: '6rem',
+        marginTop: '-72px',
+        paddingTop: 'calc(5.5rem + 72px)',
         paddingBottom: '5.5rem',
         color: '#FFFFFF',
         overflow: 'hidden',
@@ -24,7 +25,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
     >
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <div style={{ maxWidth: '820px' }}>
-          {/* Accent Gold Badge matching Figma Make: | 23 YEARS OF EDUCATION · CLASSES I TO X */}
+          {/* Accent Gold Badge: Allied Education Society */}
           <div
             style={{
               display: 'inline-flex',
@@ -55,14 +56,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
                 color: 'var(--color-gold-light)',
               }}
             >
-              23 Years of Education · Classes I to X
+              Allied Education Society · NEMS Sangamner
             </span>
           </div>
 
-          {/* Heading matching Figma Make typography */}
+          {/* Heading */}
           <h1
             style={{
-              fontSize: 'clamp(2.5rem, 5.2vw, 4.2rem)',
+              fontSize: 'clamp(2.4rem, 5vw, 4.1rem)',
               fontWeight: 800,
               lineHeight: 1.15,
               color: '#FFFFFF',
@@ -70,9 +71,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
               textShadow: '0 2px 10px rgba(0,0,0,0.3)',
             }}
           >
-            Learning with discipline.{' '}
+            Bonded to Build the Nation.{' '}
             <span style={{ color: 'var(--color-gold-base)', display: 'inline-block' }}>
-              Growing with confidence.
+              100% SSC Board Results.
             </span>
           </h1>
 
@@ -81,11 +82,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
               fontSize: 'clamp(1.05rem, 1.8vw, 1.25rem)',
               color: 'rgba(255, 255, 255, 0.88)',
               lineHeight: 1.65,
-              maxWidth: '680px',
+              maxWidth: '720px',
               marginBottom: '2.5rem',
             }}
           >
-            Empowering curious young minds through academic excellence, character building, modern STEM laboratories, and dedicated educators committed to every child's success.
+            Uplifting students through appropriate modern education, moral values, digital audio-visual classrooms, and dedicated scholarship exam coaching affiliated with the Maharashtra State Board (Pune).
           </p>
 
           {/* CTA Buttons */}
@@ -103,7 +104,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
               className="btn btn-outline-white btn-lg hero-btn"
             >
               <Compass size={18} />
-              <span>Explore Campus</span>
+              <span>About Society & School</span>
             </a>
           </div>
 
@@ -111,15 +112,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', opacity: 0.9 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem' }}>
               <ShieldCheck size={18} color="var(--color-gold-base)" />
-              <span>100% Board Pass Track Record</span>
+              <span>100% SSC Passing Legacy</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem' }}>
               <ShieldCheck size={18} color="var(--color-gold-base)" />
-              <span>Safe GPS School Transport</span>
+              <span>Govt. Scholarship & Talent Coaching</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem' }}>
               <ShieldCheck size={18} color="var(--color-gold-base)" />
-              <span>Modern STEM & AI Labs</span>
+              <span>Scout-Guide & MCC Training</span>
             </div>
           </div>
         </div>
@@ -170,6 +171,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
       </div>
 
       <style>{`
+        @media (max-width: 600px) {
+          #home {
+            margin-top: -68px !important;
+            padding-top: calc(4rem + 68px) !important;
+          }
+        }
         @media (max-width: 576px) {
           .hero-cta-group {
             flex-direction: column !important;

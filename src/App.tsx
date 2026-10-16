@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useScrollSpy } from './hooks/useScrollSpy';
-import { TopBar } from './components/layout/TopBar';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HeroSection } from './components/sections/HeroSection';
@@ -9,6 +8,7 @@ import { PrincipalSection } from './components/sections/PrincipalSection';
 import { AcademicsSection } from './components/sections/AcademicsSection';
 import { FacilitiesSection } from './components/sections/FacilitiesSection';
 import { StudentToppersSection } from './components/sections/StudentToppersSection';
+import { OurPrideSection } from './components/sections/OurPrideSection';
 import { FacultySection } from './components/sections/FacultySection';
 import { AchievementsSection } from './components/sections/AchievementsSection';
 import { GallerySection } from './components/sections/GallerySection';
@@ -23,10 +23,11 @@ export function App() {
   const sectionIds = [
     'home',
     'about',
-    'principal',
+    'leadership',
     'academics',
     'facilities',
     'toppers',
+    'pride',
     'faculty',
     'achievements',
     'gallery',
@@ -41,9 +42,6 @@ export function App() {
 
   return (
     <div className="app-root">
-      {/* Top Announcement & Info Bar */}
-      <TopBar onOpenAdmissionModal={handleOpenAdmission} />
-
       {/* Sticky Main Navigation */}
       <Navbar
         activeSection={activeSection}
@@ -58,6 +56,7 @@ export function App() {
         <AcademicsSection onOpenAdmissionModal={handleOpenAdmission} />
         <FacilitiesSection />
         <StudentToppersSection />
+        <OurPrideSection />
         <FacultySection />
         <AchievementsSection />
         <GallerySection />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap, MapPin, Phone, Mail, Clock, ArrowUpRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ArrowUpRight } from 'lucide-react';
 import { SCHOOL_INFO, CONTACT_INFO } from '../../data/schoolData';
 import { FOOTER_QUICK_LINKS, FOOTER_POLICY_LINKS } from '../../data/navigation';
 
@@ -29,30 +29,36 @@ export const Footer: React.FC = () => {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
               <div
                 style={{
-                  width: '42px',
-                  height: '42px',
-                  backgroundColor: 'var(--color-navy-base)',
+                  width: '46px',
+                  height: '46px',
                   borderRadius: '8px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  backgroundColor: '#FFFFFF',
                   border: '1.5px solid var(--color-gold-base)',
+                  overflow: 'hidden',
+                  padding: '2px',
                 }}
               >
-                <GraduationCap size={24} color="var(--color-gold-base)" />
+                <img
+                  src="/assets/images/nems-logo.png"
+                  alt="NEMS Logo"
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
               </div>
               <div>
                 <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', fontWeight: 800, color: '#FFFFFF', lineHeight: 1 }}>
-                  NATION
+                  NEMS SANGAMNER
                 </div>
-                <div style={{ fontSize: '0.65rem', letterSpacing: '0.15em', color: 'var(--color-gold-light)', textTransform: 'uppercase' }}>
-                  English Medium School
+                <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', color: 'var(--color-gold-light)', textTransform: 'uppercase' }}>
+                  Allied Education Society
                 </div>
               </div>
             </div>
 
             <p style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.25rem' }}>
-              {SCHOOL_INFO.tagline} Established in 2002. Offering comprehensive Class I to X education grounded in academic rigor, ethical values, and holistic co-curricular growth.
+              {SCHOOL_INFO.tagline} · {SCHOOL_INFO.secondaryMotto}. {SCHOOL_INFO.missionStatement}
             </p>
 
             <div className="badge badge-gold-dark" style={{ fontSize: '0.72rem' }}>
@@ -161,10 +167,10 @@ export const Footer: React.FC = () => {
           }}
         >
           <div>
-            © {new Date().getFullYear()} Nation English Medium School. All Rights Reserved.
+            © {new Date().getFullYear()} Allied Education Society's National English Medium School (NEMS), Sangamner.
           </div>
           <div>
-            Dedicated to 23 Years of Educational Excellence in Sangamner.
+            100% SSC Results · Affiliated to MSBSHSE Pune · Kolhewadi Road, Sangamner
           </div>
         </div>
       </div>

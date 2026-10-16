@@ -5,11 +5,12 @@ export interface NavLink {
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Principal', href: '#principal' },
+  { label: 'About Society', href: '#about' },
+  { label: 'Leadership', href: '#leadership' },
   { label: 'Academics', href: '#academics' },
   { label: 'Facilities', href: '#facilities' },
-  { label: 'Toppers & Stars', href: '#toppers' },
+  { label: 'SSC Results', href: '#toppers' },
+  { label: 'Our Pride', href: '#pride' },
   { label: 'Faculty', href: '#faculty' },
   { label: 'Achievements', href: '#achievements' },
   { label: 'Gallery', href: '#gallery' },
@@ -18,18 +19,19 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 export const FOOTER_QUICK_LINKS: NavLink[] = [
-  { label: 'Curriculum & Streams', href: '#academics' },
-  { label: 'Admission Guidelines 2025–26', href: '#admissions' },
-  { label: 'Board Examination Toppers', href: '#toppers' },
-  { label: 'Campus Infrastructure', href: '#facilities' },
-  { label: 'Faculty & Mentors', href: '#faculty' },
-  { label: 'Annual Sports & Events', href: '#achievements' },
+  { label: 'Maharashtra State Board Curriculum', href: '#academics' },
+  { label: 'SSC 100% Result Track Record', href: '#toppers' },
+  { label: 'Our Pride: Doctors & Engineers', href: '#pride' },
+  { label: 'Admission Documents & Criteria', href: '#admissions' },
+  { label: 'Digital AV Hall & Science Labs', href: '#facilities' },
+  { label: 'Scout-Guide & MCC Activities', href: '#achievements' },
+  { label: 'Experienced Faculty Mentors', href: '#faculty' },
 ];
 
 export const FOOTER_POLICY_LINKS: NavLink[] = [
-  { label: 'Code of Student Conduct', href: '#' },
-  { label: 'Transport Safety Protocol', href: '#' },
-  { label: 'Anti-Bullying Cell', href: '#' },
-  { label: 'Privacy Policy', href: '#' },
-  { label: 'Parent Portal Login', href: '#' },
+  { label: 'Allied Education Society Charter', href: '#about' },
+  { label: 'Code of Student Discipline & Values', href: '#' },
+  { label: 'Scholarship Exam Cell', href: '#academics' },
+  { label: 'Campus Transport Routes', href: '#facilities' },
+  { label: 'Government Approvals & Affiliation', href: '#about' },
 ];

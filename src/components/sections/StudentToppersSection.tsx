@@ -14,19 +14,19 @@ export const StudentToppersSection: React.FC = () => {
     <section id="toppers" className="section section-alt">
       <div className="container">
         <SectionHeader
-          eyebrow="Student Spotlight & Distinction"
-          title="Proud Achievers & Board Toppers"
-          highlightWord="Board Toppers"
-          description="Honoring our brightest scholars, national olympiad rank holders, and state champions who exemplify the spirit of Nation School."
+          eyebrow="Maharashtra State Board Excellence"
+          title="100% SSC Results & Merit Achievers"
+          highlightWord="100% SSC Results"
+          description="Honoring our continuous 100% SSC board passing track record, taluka scholarship rankers, Scout-Guide contingents, and drawing grade distinction holders."
         />
 
         {/* Filter Pills */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.65rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
           {[
             { id: 'all', label: 'All Achievers' },
-            { id: 'board', label: 'Class X Board Toppers' },
-            { id: 'stem', label: 'STEM & Robotics' },
-            { id: 'sports', label: 'Athletics & Honors' },
+            { id: 'board', label: 'SSC & Scholarships' },
+            { id: 'sports', label: 'Scout, Guide & Sports' },
+            { id: 'arts', label: 'Art & Drawing Grade' },
           ].map((item) => (
             <button
               key={item.id}
