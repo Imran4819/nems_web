@@ -56,11 +56,11 @@ export const PrincipalSection: React.FC = () => {
           className="principal-card"
         >
           {/* Leader Image & Credentials */}
-          <div style={{ position: 'relative', minHeight: '380px' }}>
+          <div style={{ position: 'relative', minHeight: '380px', backgroundColor: '#F8FAFC' }}>
             <img
-              src={activeLeader.image || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80'}
+              src={activeLeader.image || '/assets/images/Dignified%20Elder%20in%20White%20and%20Cream.png'}
               alt={activeLeader.name}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }}
             />
             <div
               style={{

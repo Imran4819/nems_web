@@ -16,9 +16,10 @@ export const SCHOOL_INFO = {
   shortName: 'NEMS Sangamner',
   trustName: 'Allied Education Society, Sangamner',
   tagline: 'Bonded to Build the Nation',
-  secondaryMotto: 'We Trust Al-Mighty',
+  secondaryMotto: 'Knowledge comes but wisdom lingers.',
+  faithMotto: 'We Trust Al-Mighty',
   missionStatement:
-    'Upliftment of rural masses through appropriate education, giving true excellence of modern education with deep-rooted social and ethical principles.',
+    'Upliftment of rural masses through appropriate education. Gives true excellence of modern education with social Principles.',
   establishedYear: 2002,
   yearsOfExcellence: '23+ Years of Educational Excellence',
   curriculum: 'Pre-Primary to Class X · English Medium',
@@ -48,27 +49,27 @@ export const SOCIETY_GOALS = [
   {
     num: '01',
     title: 'Academic Excellence',
-    desc: 'To achieve the highest standards in scholastic rigor, board examinations, and competitive foundation.',
+    desc: 'To achieve academic excellence.',
   },
   {
     num: '02',
-    title: 'Women & Girls Education',
-    desc: 'To proactively promote and support continuous education for rural girls and young women.',
+    title: 'Education for Rural Women',
+    desc: 'To promote education for rural women.',
   },
   {
     num: '03',
-    title: 'Inclusive Opportunity',
-    desc: 'To provide quality educational avenues to needy and economically backward classes without disparity.',
+    title: 'Avenues for Needy Classes',
+    desc: 'To provide education avenues to needy and economically backward classes.',
   },
   {
     num: '04',
-    title: 'Value-Based Moral Character',
-    desc: 'To inculcate moral values, discipline, patriotism, and social responsibility in our youth.',
+    title: 'Value-Based Education in Youth',
+    desc: 'To inculcate value based education in youth.',
   },
   {
     num: '05',
-    title: 'Socio-Cultural Transformation',
-    desc: 'To achieve uplifting socio-economic and cultural transformation in Sangamner through enlightened education.',
+    title: 'Socio-Economic & Cultural Transformation',
+    desc: 'To achieve socio-economic and cultural transformation through education.',
   },
 ];
 
@@ -81,7 +82,7 @@ export const LEADERSHIP_DESKS: TrusteeLeader[] = [
     designation: 'Visionary Founder & Educational Leader',
     message:
       'Our prime focus has always been the upliftment of rural masses through high-standard, character-building education. At National English Medium School, we nurture our children with modern scientific temper while keeping them bonded to the service of the nation.',
-    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    image: '/assets/images/Dignified%20Elder%20in%20White%20and%20Cream.png',
   },
   {
     id: 'secretary',
@@ -517,6 +518,123 @@ export const ACHIEVEMENTS: SchoolAchievement[] = [
     award: 'Directorate of Art Recognition',
   },
 ];
+
+export const MILESTONE_23_YEARS = {
+  years: 23,
+  badgeText: 'Successful Completion of 23 Years',
+  headline: '23 Years of Educational Excellence',
+  tagline: 'Bonded to Build the Nation · A Legacy of Character, Discipline & Academic Distinction',
+  summary:
+    'From our humble founding under Allied Education Society to becoming a flagship institution in Sangamner, National English Medium School celebrates 23 years of transforming students into doctors, engineers, scholars, and responsible citizens.',
+  achievements: [
+    {
+      title: 'Value Based Education',
+      desc: 'Inculcating deep moral values, ethical conduct, and civic duty alongside academic learning.',
+      icon: 'ShieldCheck',
+    },
+    {
+      title: 'Well-Experienced & Dedicated Staff',
+      desc: 'Committed, caring, and highly qualified educators providing expert subject mentorship.',
+      icon: 'GraduationCap',
+    },
+    {
+      title: 'Regular Test Series (Six Practice Papers)',
+      desc: 'Continuous board-pattern practice tests preparing students thoroughly for final examinations.',
+      icon: 'FileCheck2',
+    },
+    {
+      title: 'All-Round Pupil Development',
+      desc: 'Balanced nurturing of cognitive intellect, physical vigor, emotional maturity, and social skills.',
+      icon: 'HeartHandshake',
+    },
+    {
+      title: 'Application-Based Education',
+      desc: 'Hands-on experiential learning moving far beyond rote memory towards true conceptual clarity.',
+      icon: 'Lightbulb',
+    },
+    {
+      title: 'Personal Guidance to Students',
+      desc: 'Individual counseling, remedial attention, and customized mentoring for every learner.',
+      icon: 'UserCheck',
+    },
+    {
+      title: 'E-Learning & Projector-Based Teaching',
+      desc: 'State-of-the-art audiovisual modules making science, mathematics, and social studies intuitive.',
+      icon: 'MonitorPlay',
+    },
+    {
+      title: 'Multilingual Curriculum',
+      desc: 'Comprehensive language proficiency across English, Marathi, and Hindi from early grades.',
+      icon: 'Languages',
+    },
+    {
+      title: 'Co-Curricular & Sports Engagement',
+      desc: 'Vibrant participation in athletics, inter-school tournaments, speech, drama, and fine arts.',
+      icon: 'Trophy',
+    },
+    {
+      title: 'Preparation for Talent-Based Exams',
+      desc: 'Specialized coaching for State Scholarships, Olympiads, and regional talent search examinations.',
+      icon: 'Sparkles',
+    },
+    {
+      title: 'Campus Under 24/7 CCTV Surveillance',
+      desc: 'Full-perimeter and classroom security surveillance guaranteeing complete child safety.',
+      icon: 'Eye',
+    },
+    {
+      title: 'NEET, JEE, CET & Competitive Success',
+      desc: 'Proven foundation enabling generations of alumni to crack top entrance examinations nationwide.',
+      icon: 'Target',
+    },
+  ],
+  journeyPillars: [
+    {
+      title: 'Scholastic & Academic Quality',
+      subtitle: 'Academic Excellence',
+      desc: 'Maintaining the highest academic standards and an unbroken 100% SSC board passing track record.',
+    },
+    {
+      title: 'Structured Co-Curricular Planning',
+      subtitle: 'Diverse Co-Curriculars',
+      desc: 'Year-round calendar of annual gatherings, exhibitions, sports meets, and national celebrations.',
+    },
+    {
+      title: 'Higher Education in JEE, NEET & CET',
+      subtitle: 'Higher Ed via JEE / NEET / CET',
+      desc: 'Scores of alumni pursuing prestigious medical, engineering, and technology careers across India.',
+    },
+    {
+      title: 'Strong Parent-School Collaboration',
+      subtitle: 'Parent-School Harmony',
+      desc: 'Transparent, proactive communication ensuring parents and teachers work hand-in-hand.',
+    },
+    {
+      title: 'Outstanding Alumni Distinctions',
+      subtitle: 'Distinguished Alumni',
+      desc: 'NEMS graduates serving with distinction as doctors, software architects, and civil leaders.',
+    },
+    {
+      title: 'Exemplary Discipline & Culture',
+      subtitle: 'Exemplary Discipline',
+      desc: 'Scout-Guide, MCC drills, and time-tested institutional values fostering lifelong discipline.',
+    },
+  ],
+  pathwayToSuccess: [
+    'Proper guidance & motivation provided for higher education & career aspirations',
+    'Core emphasis on value-based moral education',
+    'Highly experienced & dedicated teaching faculty',
+    'Comprehensive focus on all-round child development',
+    'Practical application-oriented conceptual knowledge',
+    'Individual mentoring and personalized attention for every learner',
+    'Active participation in outdoor athletics and sporting games',
+    'Modern e-learning instruction via smart digital projectors',
+    'Personality grooming, stage courage, and confidence building',
+    'Rigorous preparation for Talent Search & Government Scholarship exams',
+    'Dedicated foundation coaching for competitive entrance tests',
+    'Multilingual mastery across English, Hindi, and regional languages',
+  ],
+};
 
 export const GALLERY_ITEMS: GalleryItem[] = [
   {

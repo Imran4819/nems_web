@@ -16,9 +16,11 @@ import { TestimonialsSection } from './components/sections/TestimonialsSection';
 import { AdmissionsBannerSection } from './components/sections/AdmissionsBannerSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { AdmissionModal } from './components/common/AdmissionModal';
+import { NemsAiChatbot } from './components/common/NemsAiChatbot';
 
 export function App() {
   const [isAdmissionModalOpen, setIsAdmissionModalOpen] = useState(false);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   const sectionIds = [
     'home',
@@ -39,6 +41,8 @@ export function App() {
 
   const handleOpenAdmission = () => setIsAdmissionModalOpen(true);
   const handleCloseAdmission = () => setIsAdmissionModalOpen(false);
+  const handleToggleChatbot = () => setIsChatbotOpen((prev) => !prev);
+  const handleOpenChatbot = () => setIsChatbotOpen(true);
 
   return (
     <div className="app-root">
@@ -46,6 +50,7 @@ export function App() {
       <Navbar
         activeSection={activeSection}
         onOpenAdmissionModal={handleOpenAdmission}
+        onOpenChatbot={handleOpenChatbot}
       />
 
       {/* Main Content Sections */}
@@ -72,6 +77,13 @@ export function App() {
       <AdmissionModal
         isOpen={isAdmissionModalOpen}
         onClose={handleCloseAdmission}
+      />
+
+      {/* NEMS AI Interactive Campus Chatbot */}
+      <NemsAiChatbot
+        isOpen={isChatbotOpen}
+        onToggle={handleToggleChatbot}
+        onOpenAdmissionModal={handleOpenAdmission}
       />
     </div>
   );

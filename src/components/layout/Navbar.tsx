@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, Phone, Mail } from 'lucide-react';
+import { Menu, X, ChevronRight, Phone, Mail, Sparkles } from 'lucide-react';
 import { NAV_LINKS } from '../../data/navigation';
 import { CONTACT_INFO } from '../../data/schoolData';
 import { useScrollPosition } from '../../hooks/useScrollPosition';
@@ -7,9 +7,14 @@ import { useScrollPosition } from '../../hooks/useScrollPosition';
 interface NavbarProps {
   activeSection: string;
   onOpenAdmissionModal: () => void;
+  onOpenChatbot?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionModal }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  activeSection,
+  onOpenAdmissionModal,
+  onOpenChatbot,
+}) => {
   const { isScrolled } = useScrollPosition();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -167,6 +172,39 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
                 </a>
               );
             })}
+
+            {onOpenChatbot && (
+              <button
+                onClick={onOpenChatbot}
+                className="btn btn-sm"
+                style={{
+                  backgroundColor: 'rgba(197, 160, 89, 0.18)',
+                  color: 'var(--color-gold-light)',
+                  border: '1px solid var(--color-gold-base)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  fontWeight: 700,
+                  fontSize: '0.82rem',
+                  padding: '0.42rem 0.85rem',
+                  borderRadius: 'var(--radius-full)',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  marginLeft: '0.25rem',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-gold-base)';
+                  e.currentTarget.style.color = 'var(--color-navy-dark)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(197, 160, 89, 0.18)';
+                  e.currentTarget.style.color = 'var(--color-gold-light)';
+                }}
+              >
+                <Sparkles size={14} />
+                <span>Ask NEMS AI</span>
+              </button>
+            )}
 
             <button
               onClick={onOpenAdmissionModal}
@@ -342,6 +380,33 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
             gap: '1rem',
           }}
         >
+          {onOpenChatbot && (
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenChatbot();
+              }}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                borderRadius: 'var(--radius-md)',
+                backgroundColor: 'var(--color-navy-base)',
+                color: '#FFFFFF',
+                border: '1.5px solid var(--color-gold-base)',
+                fontWeight: 700,
+                fontSize: '0.86rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                cursor: 'pointer',
+              }}
+            >
+              <Sparkles size={16} color="var(--color-gold-base)" />
+              <span>Ask NEMS AI Assistant</span>
+            </button>
+          )}
+
           <button
             onClick={() => {
               setMobileMenuOpen(false);
@@ -350,7 +415,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenAdmissionMo
             className="btn btn-primary"
             style={{ width: '100%', padding: '0.85rem' }}
           >
-            Apply for Admission 2025–26
+            Apply for Admission 2026–27
           </button>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', fontSize: '0.82rem', color: 'var(--color-text-muted)' }}>

@@ -116,15 +116,64 @@ export const AboutSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 5 Core Objectives of Allied Education Society */}
-        <div style={{ marginBottom: '4.5rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <span className="badge badge-gold" style={{ marginBottom: '0.5rem' }}>
-              Foundational Mission
+        {/* Official Mission & 5 Core Goals from School Handbook */}
+        <div
+          style={{
+            marginBottom: '4.5rem',
+            backgroundColor: '#FFFFFF',
+            borderRadius: 'var(--radius-xl)',
+            padding: 'clamp(1.75rem, 3.5vw, 3rem)',
+            boxShadow: 'var(--shadow-md)',
+            border: '2px solid rgba(197, 160, 89, 0.35)',
+            position: 'relative',
+          }}
+        >
+          {/* Header matching Handbook Page 3 */}
+          <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 2.5rem auto' }}>
+            <span className="badge badge-gold" style={{ marginBottom: '0.65rem' }}>
+              Official School Handbook Charter · Page 3
             </span>
-            <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy-base)' }}>
-              5 Core Goals of Allied Education Society
+            <h3
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(1.5rem, 3vw, 2.1rem)',
+                color: 'var(--color-navy-base)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em',
+                margin: '0 0 1rem 0',
+              }}
+            >
+              Mission of National English Medium School
             </h3>
+            <div
+              style={{
+                fontSize: '1.05rem',
+                color: 'var(--color-navy-medium)',
+                lineHeight: '1.7',
+                fontStyle: 'italic',
+                backgroundColor: 'rgba(197, 160, 89, 0.08)',
+                padding: '1rem 1.5rem',
+                borderRadius: 'var(--radius-md)',
+                borderLeft: '4px solid var(--color-gold-base)',
+              }}
+            >
+              "{SCHOOL_INFO.missionStatement}"
+            </div>
+          </div>
+
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <h4
+              style={{
+                fontSize: '1.2rem',
+                color: 'var(--color-navy-base)',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '0.06em',
+                margin: 0,
+              }}
+            >
+              Goals:
+            </h4>
           </div>
 
           <div
@@ -144,19 +193,59 @@ export const AboutSection: React.FC = () => {
                   flexDirection: 'column',
                   gap: '0.65rem',
                   borderTop: '3px solid var(--color-gold-base)',
+                  backgroundColor: '#F8FAFC',
                 }}
               >
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', fontWeight: 800, color: 'var(--color-gold-base)', opacity: 0.85 }}>
+                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', fontWeight: 800, color: 'var(--color-gold-base)', opacity: 0.9 }}>
                   {goal.num}
                 </div>
-                <h4 style={{ fontSize: '1.05rem', color: 'var(--color-navy-base)', margin: 0 }}>
+                <h4 style={{ fontSize: '1.02rem', color: 'var(--color-navy-base)', margin: 0, fontWeight: 700 }}>
                   {goal.title}
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--color-text-muted)', lineHeight: '1.55', margin: 0 }}>
+                <p style={{ fontSize: '0.88rem', color: 'var(--color-text-body)', lineHeight: '1.55', margin: 0 }}>
                   {goal.desc}
                 </p>
               </div>
             ))}
+          </div>
+
+          {/* Handbook Bottom Motto Banner */}
+          <div
+            style={{
+              marginTop: '2.5rem',
+              textAlign: 'center',
+              padding: '1.25rem 2rem',
+              backgroundColor: 'var(--color-navy-base)',
+              borderRadius: 'var(--radius-lg)',
+              color: '#FFFFFF',
+              boxShadow: 'var(--shadow-md)',
+              border: '1.5px solid var(--color-gold-base)',
+            }}
+          >
+            <div
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(1.15rem, 2.5vw, 1.45rem)',
+                fontStyle: 'italic',
+                color: 'var(--color-gold-light)',
+                fontWeight: 700,
+                letterSpacing: '0.02em',
+              }}
+            >
+              "{SCHOOL_INFO.secondaryMotto}"
+            </div>
+            <div
+              style={{
+                fontSize: '0.78rem',
+                color: 'rgba(255, 255, 255, 0.75)',
+                fontWeight: 600,
+                marginTop: '4px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+              }}
+            >
+              Institutional Guiding Principle · National English Medium School
+            </div>
           </div>
         </div>
 
