@@ -76,7 +76,7 @@ export const SOCIETY_GOALS = [
 export const LEADERSHIP_DESKS: TrusteeLeader[] = [
   {
     id: 'chairman',
-    name: 'Hon. Haji Abdul Karim Tamboli',
+    name: 'Late. Haji Abdul Karim Tamboli',
     role: 'chairman',
     title: 'Chairman, Allied Education Society',
     designation: 'Visionary Founder & Educational Leader',
