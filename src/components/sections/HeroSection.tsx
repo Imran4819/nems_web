@@ -109,7 +109,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
           </div>
 
           {/* Quick Credibility Features */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', opacity: 0.9 }}>
+          <div className="hero-credibility" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', opacity: 0.9 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem' }}>
               <ShieldCheck size={18} color="var(--color-gold-base)" />
               <span>100% SSC Passing Legacy</span>
@@ -175,6 +175,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
           #home {
             margin-top: -68px !important;
             padding-top: calc(4rem + 68px) !important;
+            padding-bottom: 3rem !important;
           }
         }
         @media (max-width: 576px) {
@@ -183,10 +184,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
           }
           .hero-btn {
             width: 100% !important;
+            justify-content: center !important;
           }
           .hero-stats-grid {
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 1rem !important;
+            gap: 0.85rem !important;
+          }
+          .hero-credibility {
+            flex-direction: column !important;
+            gap: 0.75rem !important;
+          }
+        }
+        @media (max-width: 375px) {
+          .hero-stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
           }
         }
       `}</style>

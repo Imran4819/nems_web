@@ -51,23 +51,23 @@ export const SOCIETY_GOALS = [
     title: 'Academic Excellence',
     desc: 'To achieve academic excellence.',
   },
+  // {
+  //   num: '02',
+  //   title: 'Education for Rural Women',
+  //   desc: 'To promote education for rural women.',
+  // },
   {
     num: '02',
-    title: 'Education for Rural Women',
-    desc: 'To promote education for rural women.',
-  },
-  {
-    num: '03',
     title: 'Avenues for Needy Classes',
     desc: 'To provide education avenues to needy and economically backward classes.',
   },
   {
-    num: '04',
+    num: '03',
     title: 'Value-Based Education in Youth',
     desc: 'To inculcate value based education in youth.',
   },
   {
-    num: '05',
+    num: '04',
     title: 'Socio-Economic & Cultural Transformation',
     desc: 'To achieve socio-economic and cultural transformation through education.',
   },
@@ -86,13 +86,13 @@ export const LEADERSHIP_DESKS: TrusteeLeader[] = [
   },
   {
     id: 'secretary',
-    name: 'Dr. Wasim Tamboli',
+    name: 'Hon. Nazim Tamboli',
     role: 'secretary',
     title: 'Secretary, Allied Education Society',
     designation: 'Managing Director & Academic Administrator',
     message:
       'We believe education must empower every child with confidence, critical skills, and empathetic values. Our 100% SSC board result track record and specialized competitive coaching reflect our dedicated commitment to every single student.',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80',
+    image: '/assets/images/Professional%20Office%20Headshot.png',
   },
   {
     id: 'principal',

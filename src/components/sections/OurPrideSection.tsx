@@ -55,7 +55,7 @@ export const OurPrideSection: React.FC = () => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
             gap: '1.75rem',
             marginBottom: '3.5rem',
           }}
@@ -231,7 +231,7 @@ export const OurPrideSection: React.FC = () => {
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
+        @media (max-width: 600px) {
           .alumni-grid {
             grid-template-columns: 1fr !important;
           }

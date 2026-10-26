@@ -12,6 +12,7 @@ export const Footer: React.FC = () => {
         paddingTop: '4.5rem',
         paddingBottom: '2.5rem',
         borderTop: '3px solid var(--color-gold-base)',
+        overflow: 'hidden',
       }}
     >
       <div className="container">
@@ -142,7 +143,7 @@ export const Footer: React.FC = () => {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                 <Mail size={18} color="var(--color-gold-base)" style={{ flexShrink: 0 }} />
-                <span>{CONTACT_INFO.email}</span>
+                <span style={{ wordBreak: 'break-all' }}>{CONTACT_INFO.email}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
                 <Clock size={18} color="var(--color-gold-base)" style={{ flexShrink: 0, marginTop: '2px' }} />
@@ -179,11 +180,13 @@ export const Footer: React.FC = () => {
         @media (max-width: 900px) {
           .footer-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+            gap: 2rem !important;
           }
         }
         @media (max-width: 600px) {
           .footer-grid {
             grid-template-columns: 1fr !important;
+            gap: 1.75rem !important;
           }
         }
       `}</style>
