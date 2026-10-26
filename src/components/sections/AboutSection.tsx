@@ -47,7 +47,7 @@ export const AboutSection: React.FC = () => {
               "Bonded to Build the Nation" with Quality, Modern & Value-Based Education.
             </h3>
             <p style={{ fontSize: '1.02rem', lineHeight: '1.7', color: 'var(--color-text-body)', marginBottom: '1.25rem' }}>
-              Founded under the visionary leadership of <strong>Hon. Haji Abdul Karim Tamboli</strong> and <strong>Dr. Wasim Tamboli</strong>, Allied Education Society established National English Medium School (NEMS), Sangamner with a core motto: <em>"Bonded to Build the Nation"</em> and <em>"We Trust Al-Mighty"</em>.
+              Founded under the visionary leadership of <strong>Late. Haji Abdul Karim Tamboli</strong> and <strong>Hon.Nazim Tamboli</strong>, Allied Education Society established National English Medium School (NEMS), Sangamner with a core motto: <em>"Bonded to Build the Nation"</em> and <em>"We Trust Al-Mighty"</em>.
             </p>
             <p style={{ fontSize: '1.02rem', lineHeight: '1.7', color: 'var(--color-text-body)', marginBottom: '1.75rem' }}>
               Situated at Kolhewadi Road in Sangamner, our campus bridges the gap between rural aspirations and contemporary global competence. With projector-equipped digital teaching, specialized scholarship examination coaching, Scout & Guide, and English grammar seminars, we ensure every student achieves scholastic excellence with humility.
@@ -356,6 +356,13 @@ export const AboutSection: React.FC = () => {
             position: static !important;
             margin-top: 1rem !important;
             max-width: 100% !important;
+            left: auto !important;
+            bottom: auto !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .about-grid {
+            gap: 1.5rem !important;
           }
         }
       `}</style>

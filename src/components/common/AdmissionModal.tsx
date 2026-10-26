@@ -13,7 +13,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
     parentName: '',
     email: '',
     phone: '',
-    targetGrade: 'Class I',
+    targetGrade: 'LKG',
     academicYear: '2025–26',
     message: '',
   });
@@ -134,7 +134,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
                       background: '#FFFFFF',
                     }}
                   >
-                    {['Class I', 'Class II', 'Class III', 'Class IV', 'Class V', 'Class VI', 'Class VII', 'Class VIII', 'Class IX', 'Class X'].map((cls) => (
+                    {['LKG', 'UKG'].map((cls) => (
                       <option key={cls} value={cls}>{cls}</option>
                     ))}
                   </select>

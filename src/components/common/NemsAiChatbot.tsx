@@ -679,7 +679,7 @@ export const NemsAiChatbot: React.FC<NemsAiChatbotProps> = ({
                 <img
                   src="/assets/images/nems-logo.png"
                   alt="NEMS Logo"
-                  style={{ width: '28px', height: '28px', objectFit: 'contain' }}
+                  style={{ width: '38px', height: '38px', objectFit: 'contain' }}
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}

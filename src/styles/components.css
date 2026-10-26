@@ -201,6 +201,17 @@
   }
 }
 
+/* Prevent any element from overflowing horizontally */
+* {
+  max-width: 100%;
+}
+
+/* Fix images and media */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Modal */
 .modal-overlay {
   position: fixed;
@@ -287,6 +298,10 @@
     padding: 2.75rem 0;
   }
 
+  .section-header {
+    padding: 0 0.5rem;
+  }
+
   .section-header h2 {
     font-size: 1.55rem;
   }
@@ -296,14 +311,36 @@
     border-radius: var(--radius-lg);
   }
 
-  .btn {
+  .btn:not(.btn-sm) {
     width: 100%;
   }
 
   .btn-sm {
     width: auto;
   }
+
+  .card {
+    padding: 1.25rem;
+  }
 }
+
+/* Extra small screens */
+@media (max-width: 375px) {
+  .container {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.35rem;
+  }
+
+  .btn-lg {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
 
 /* Chatbot & Modal Keyframe Animations */
 @keyframes fadeInUp {
