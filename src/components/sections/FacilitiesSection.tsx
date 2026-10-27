@@ -2,39 +2,51 @@ import React from 'react';
 import { MonitorPlay, FlaskConical, Cpu, BookOpen, Trophy, Bus, Check } from 'lucide-react';
 import { FACILITIES } from '../../data/schoolData';
 import { SectionHeader } from '../common/SectionHeader';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const FacilitiesSection: React.FC = () => {
-  const getIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'MonitorPlay':
+  const { t } = useLanguage();
+
+  const getIcon = (id: string) => {
+    switch (id) {
+      case 'smart-classrooms':
         return <MonitorPlay size={22} />;
-      case 'FlaskConical':
+      case 'science-labs':
         return <FlaskConical size={22} />;
-      case 'Cpu':
+      case 'computer-lab':
         return <Cpu size={22} />;
-      case 'BookOpen':
+      case 'library':
         return <BookOpen size={22} />;
-      case 'Trophy':
+      case 'sports':
         return <Trophy size={22} />;
-      case 'Bus':
+      case 'transport':
         return <Bus size={22} />;
       default:
         return <Check size={22} />;
     }
   };
 
+  // Merge images from schoolData with localized texts
+  const facilities = t.facilities.items.map((item) => {
+    const original = FACILITIES.find((f) => f.id === item.id) || FACILITIES[0];
+    return {
+      ...item,
+      image: original.image,
+    };
+  });
+
   return (
     <section id="facilities" className="section">
       <div className="container">
         <SectionHeader
-          eyebrow="Campus Infrastructure"
-          title="World-Class Premises & Facilities"
-          highlightWord="Facilities"
-          description="Designed to stimulate intellectual curiosity, scientific experimentation, physical vigor, and absolute student safety."
+          eyebrow={t.facilities.eyebrow}
+          title={t.facilities.title}
+          highlightWord={t.facilities.highlightWord}
+          description={t.facilities.description}
         />
 
         <div className="grid-3">
-          {FACILITIES.map((facility) => (
+          {facilities.map((facility) => (
             <div
               key={facility.id}
               className="card"
@@ -86,7 +98,7 @@ export const FacilitiesSection: React.FC = () => {
                       flexShrink: 0,
                     }}
                   >
-                    {getIcon(facility.iconName)}
+                    {getIcon(facility.id)}
                   </div>
                   <h3 style={{ fontSize: '1.25rem', color: 'var(--color-navy-base)', margin: 0 }}>
                     {facility.title}

@@ -2,33 +2,42 @@ import React, { useState } from 'react';
 import { Stethoscope, Cpu, GraduationCap, MapPin, Building2 } from 'lucide-react';
 import { ALUMNI_PRIDE } from '../../data/schoolData';
 import { SectionHeader } from '../common/SectionHeader';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const OurPrideSection: React.FC = () => {
   const [filter, setFilter] = useState<'all' | 'doctor' | 'engineer'>('all');
+  const { t } = useLanguage();
+
+  // Merge images and professions with localized items
+  const localizedAlumni = t.pride.items.map((item) => {
+    const original = ALUMNI_PRIDE.find((a) => a.id === item.id) || ALUMNI_PRIDE[0];
+    return {
+      ...item,
+      profession: original.profession,
+      image: original.image,
+    };
+  });
 
   const filteredAlumni = filter === 'all'
-    ? ALUMNI_PRIDE
-    : ALUMNI_PRIDE.filter((a) => a.profession === filter);
-
-  const doctorCount = ALUMNI_PRIDE.filter((a) => a.profession === 'doctor').length;
-  const engineerCount = ALUMNI_PRIDE.filter((a) => a.profession === 'engineer').length;
+    ? localizedAlumni
+    : localizedAlumni.filter((a) => a.profession === filter);
 
   return (
     <section id="pride" className="section">
       <div className="container">
         <SectionHeader
-          eyebrow="Alumni In Medicine & Engineering · Distinguished Alumni Network"
-          title="Our Pride: Doctors & Engineers"
-          highlightWord="Our Pride"
-          description="Honoring our distinguished alumni who laid their academic and ethical foundation at National English Medium School, Sangamner and now serve the nation in premier hospitals, research centres, and global technology organizations."
+          eyebrow={t.pride.eyebrow}
+          title={t.pride.title}
+          highlightWord={t.pride.highlightWord}
+          description={t.pride.description}
         />
 
         {/* Filter Pills */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
           {[
-            { id: 'all', label: `All Achievers (${ALUMNI_PRIDE.length})` },
-            { id: 'doctor', label: `🩺 Doctors & Medical Specialists (${doctorCount})` },
-            { id: 'engineer', label: `⚙️ Engineers & Tech Leaders (${engineerCount})` },
+            { id: 'all', label: t.pride.filters.all },
+            { id: 'doctor', label: `🩺 ${t.pride.filters.doctor}` },
+            { id: 'engineer', label: `⚙️ ${t.pride.filters.engineer}` },
           ].map((item) => (
             <button
               key={item.id}
@@ -111,15 +120,15 @@ export const OurPrideSection: React.FC = () => {
                     }}
                   >
                     {isDoc ? <Stethoscope size={13} /> : <Cpu size={13} />}
-                    <span>{isDoc ? 'Doctor' : 'Engineer'}</span>
+                    <span>{isDoc ? t.pride.tagDoctor : t.pride.tagEngineer}</span>
                   </div>
 
                   {/* Name & Degree over photo bottom */}
                   <div style={{ position: 'absolute', bottom: '1rem', left: '1.25rem', right: '1.25rem' }}>
-                    <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#FFFFFF', lineHeight: 1.2 }}>
+                    <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', lineHeight: 1.2 }}>
                       {alumnus.name}
                     </div>
-                    <div style={{ fontSize: '0.85rem', color: isDoc ? '#A7F3D0' : 'var(--color-gold-light)', fontWeight: 600, marginTop: '2px' }}>
+                    <div style={{ fontSize: '0.82rem', color: isDoc ? '#A7F3D0' : 'var(--color-gold-light)', fontWeight: 600, marginTop: '2px' }}>
                       {alumnus.degree}
                     </div>
                   </div>
@@ -210,13 +219,13 @@ export const OurPrideSection: React.FC = () => {
         >
           <div style={{ maxWidth: '680px' }}>
             <span className="badge badge-gold-dark" style={{ marginBottom: '0.5rem' }}>
-              Inspirational Legacy
+              {t.pride.batchLabel}
             </span>
             <h3 style={{ fontSize: '1.55rem', color: '#FFFFFF', margin: '0 0 0.5rem 0' }}>
-              Are you an alumnus of NEMS Sangamner practicing in Healthcare, Technology, or Civil Services?
+              {t.pride.ctaHeading}
             </h3>
             <p style={{ fontSize: '0.92rem', color: 'rgba(255, 255, 255, 0.8)', margin: 0, lineHeight: 1.55 }}>
-              We would love to celebrate your journey and feature your accomplishments on our official institute portal to inspire current students.
+              {t.pride.ctaDesc}
             </p>
           </div>
 
@@ -225,7 +234,7 @@ export const OurPrideSection: React.FC = () => {
             className="btn btn-primary"
             style={{ padding: '0.85rem 1.6rem' }}
           >
-            Connect With Alumni Cell
+            {t.pride.ctaBtn}
           </a>
         </div>
       </div>

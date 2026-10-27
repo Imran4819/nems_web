@@ -2,20 +2,31 @@ import React from 'react';
 import { GraduationCap, Award } from 'lucide-react';
 import { FACULTY_MEMBERS } from '../../data/schoolData';
 import { SectionHeader } from '../common/SectionHeader';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const FacultySection: React.FC = () => {
+  const { t } = useLanguage();
+
+  const localizedFaculty = t.faculty.items.map((item) => {
+    const original = FACULTY_MEMBERS.find((f) => f.id === item.id) || FACULTY_MEMBERS[0];
+    return {
+      ...item,
+      image: original.image,
+    };
+  });
+
   return (
     <section id="faculty" className="section">
       <div className="container">
         <SectionHeader
-          eyebrow="Our Educators & Mentors"
-          title="Distinguished Faculty & Subject Heads"
-          highlightWord="Faculty"
-          description="Experienced mentors with decades of dedication, combining academic credentials with deeply personal commitment to student growth."
+          eyebrow={t.faculty.eyebrow}
+          title={t.faculty.title}
+          highlightWord={t.faculty.highlightWord}
+          description={t.faculty.description}
         />
 
         <div className="grid-4">
-          {FACULTY_MEMBERS.map((member) => (
+          {localizedFaculty.map((member) => (
             <div
               key={member.id}
               className="card"
@@ -39,7 +50,7 @@ export const FacultySection: React.FC = () => {
                     left: '1rem',
                   }}
                 >
-                  <span className="badge badge-gold-dark" style={{ background: 'rgba(7, 21, 39, 0.75)', color: '#FFFFFF' }}>
+                  <span className="badge badge-gold-dark" style={{ background: 'rgba(7, 21, 39, 0.85)', color: '#FFFFFF' }}>
                     <Award size={12} color="var(--color-gold-base)" />
                     <span>{member.experience}</span>
                   </span>

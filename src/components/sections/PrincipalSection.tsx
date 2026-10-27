@@ -1,27 +1,58 @@
 import React, { useState } from 'react';
 import { Quote, Award, Sparkles } from 'lucide-react';
-import { LEADERSHIP_DESKS } from '../../data/schoolData';
 import { SectionHeader } from '../common/SectionHeader';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const PrincipalSection: React.FC = () => {
   const [activeLeaderId, setActiveLeaderId] = useState<'chairman' | 'secretary' | 'principal'>('chairman');
+  const { t } = useLanguage();
 
-  const activeLeader = LEADERSHIP_DESKS.find((l) => l.id === activeLeaderId) || LEADERSHIP_DESKS[0];
+  const leaders = [
+    {
+      id: 'chairman',
+      name: t.leadership.tabChairman,
+      tabTitle: t.leadership.tabChairman.split(',')[0],
+      title: t.leadership.roleChairman,
+      designation: t.leadership.desigChairman,
+      message: t.leadership.msgChairman,
+      image: '/assets/images/Dignified%20Elder%20in%20White%20and%20Cream.png',
+    },
+    {
+      id: 'secretary',
+      name: t.leadership.tabSecretary,
+      tabTitle: t.leadership.tabSecretary.split(',')[0],
+      title: t.leadership.roleSecretary,
+      designation: t.leadership.desigSecretary,
+      message: t.leadership.msgSecretary,
+      image: '/assets/images/Professional%20Office%20Headshot.png',
+    },
+    {
+      id: 'principal',
+      name: t.leadership.tabPrincipal,
+      tabTitle: t.leadership.tabPrincipal,
+      title: t.leadership.rolePrincipal,
+      designation: t.leadership.desigPrincipal,
+      message: t.leadership.msgPrincipal,
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
+    },
+  ];
+
+  const activeLeader = leaders.find((l) => l.id === activeLeaderId) || leaders[0];
 
   return (
     <section id="leadership" className="section">
       <span id="principal" style={{ display: 'block', position: 'relative', top: '-100px', visibility: 'hidden' }} />
       <div className="container">
         <SectionHeader
-          eyebrow="Visionary Leadership & Governance"
-          title="From The Leadership Desks"
-          highlightWord="Leadership Desks"
-          description="The guiding vision of Allied Education Society and school administration steering NEMS Sangamner."
+          eyebrow={t.leadership.eyebrow}
+          title={t.leadership.title}
+          highlightWord={t.leadership.highlightWord}
+          description={t.leadership.subtitle}
         />
 
         {/* Tab Selection */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
-          {LEADERSHIP_DESKS.map((leader) => (
+          {leaders.map((leader) => (
             <button
               key={leader.id}
               onClick={() => setActiveLeaderId(leader.id as any)}
@@ -38,7 +69,7 @@ export const PrincipalSection: React.FC = () => {
                 boxShadow: activeLeaderId === leader.id ? 'var(--shadow-md)' : 'none',
               }}
             >
-              {leader.title.split(',')[0]}
+              {leader.tabTitle}
             </button>
           ))}
         </div>
@@ -58,7 +89,7 @@ export const PrincipalSection: React.FC = () => {
           {/* Leader Image & Credentials */}
           <div style={{ position: 'relative', minHeight: '380px', backgroundColor: '#F8FAFC' }}>
             <img
-              src={activeLeader.image || '/assets/images/Dignified%20Elder%20in%20White%20and%20Cream.png'}
+              src={activeLeader.image}
               alt={activeLeader.name}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }}
             />
@@ -114,8 +145,8 @@ export const PrincipalSection: React.FC = () => {
             <blockquote
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: '1.28rem',
-                lineHeight: '1.65',
+                fontSize: '1.25rem',
+                lineHeight: '1.7',
                 fontStyle: 'italic',
                 color: '#FFFFFF',
                 marginBottom: '1.5rem',
@@ -126,13 +157,9 @@ export const PrincipalSection: React.FC = () => {
               "{activeLeader.message}"
             </blockquote>
 
-            <p style={{ color: 'rgba(255, 255, 255, 0.82)', fontSize: '0.94rem', lineHeight: '1.7', marginBottom: '1.75rem' }}>
-              Under Allied Education Society, National English Medium School has remained dedicated to providing accessible, top-quality English Medium education in Sangamner with an unblemished 100% SSC board result record.
-            </p>
-
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', color: 'var(--color-gold-light)', fontSize: '0.88rem' }}>
               <Sparkles size={16} color="var(--color-gold-base)" />
-              <span>Allied Education Society · Bonded to Build the Nation</span>
+              <span>{t.leadership.leadershipBadge}</span>
             </div>
           </div>
         </div>

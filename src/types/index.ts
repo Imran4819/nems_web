@@ -95,7 +95,7 @@ export interface Testimonial {
 export interface GalleryItem {
   id: string;
   title: string;
-  category: 'Campus' | 'Sports' | 'Academics' | 'Events' | 'Batches';
+  category: 'Campus' | 'Sports' | 'Academics' | 'Events' | 'Batches' | 'National' | 'RepublicDay' | 'IndependenceDay';
   year: string;
   image: string;
   caption: string;

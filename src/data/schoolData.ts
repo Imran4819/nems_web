@@ -638,6 +638,22 @@ export const MILESTONE_23_YEARS = {
 
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
+    id: 'gal-republic-day',
+    title: 'Republic Day Flag Hoisting & Patriotic Salute (26th January)',
+    category: 'RepublicDay',
+    year: '2024',
+    image: '/assets/images/nems-republic-day.jpg',
+    caption: 'Tricolor flag unfurling, national anthem, and disciplined salute by Scout & Guide students in school assembly.',
+  },
+  {
+    id: 'gal-independence-day',
+    title: 'Independence Day Celebrations & Cultural Tributes (15th August)',
+    category: 'IndependenceDay',
+    year: '2024',
+    image: '/assets/images/nems-independence-day.jpg',
+    caption: 'Vibrant celebration with tricolor flag waving, patriotic speeches, and tributes to national freedom fighters.',
+  },
+  {
     id: 'gal-1',
     title: 'NEMS Main Campus & Academic Wing',
     category: 'Campus',

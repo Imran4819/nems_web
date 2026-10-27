@@ -1,12 +1,22 @@
 import React from 'react';
 import { ArrowRight, Compass, ShieldCheck } from 'lucide-react';
-import { KEY_STATS } from '../../data/schoolData';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface HeroSectionProps {
   onOpenAdmissionModal: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }) => {
+  const { t } = useLanguage();
+
+  const stats = [
+    { label: t.hero.stats.passRate, value: '100%' },
+    { label: t.hero.stats.years, value: '23+' },
+    { label: t.hero.stats.students, value: '1,200+' },
+    { label: t.hero.stats.faculty, value: '50+' },
+    { label: t.hero.stats.scholarship, value: 'Top Ranks' },
+  ];
+
   return (
     <section
       id="home"
@@ -56,37 +66,37 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
                 color: 'var(--color-gold-light)',
               }}
             >
-              Allied Education Society · NEMS Sangamner
+              {t.hero.badge}
             </span>
           </div>
 
           {/* Heading */}
           <h1
             style={{
-              fontSize: 'clamp(2.4rem, 5vw, 4.1rem)',
+              fontSize: 'clamp(2.3rem, 4.8vw, 4.1rem)',
               fontWeight: 800,
-              lineHeight: 1.15,
+              lineHeight: 1.18,
               color: '#FFFFFF',
               marginBottom: '1.5rem',
               textShadow: '0 2px 10px rgba(0,0,0,0.3)',
             }}
           >
-            Bonded to Build the Nation.{' '}
+            {t.hero.titleMain}{' '}
             <span style={{ color: 'var(--color-gold-base)', display: 'inline-block' }}>
-              100% SSC Board Results.
+              {t.hero.titleHighlight}
             </span>
           </h1>
 
           <p
             style={{
               fontSize: 'clamp(1.05rem, 1.8vw, 1.25rem)',
-              color: 'rgba(255, 255, 255, 0.88)',
-              lineHeight: 1.65,
-              maxWidth: '720px',
+              color: 'rgba(255, 255, 255, 0.9)',
+              lineHeight: 1.68,
+              maxWidth: '740px',
               marginBottom: '2.5rem',
             }}
           >
-            Uplifting students through appropriate modern education, moral values, digital audio-visual classrooms, and dedicated scholarship exam coaching affiliated with the Maharashtra State Board (Pune).
+            {t.hero.subtitle}
           </p>
 
           {/* CTA Buttons */}
@@ -95,7 +105,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
               onClick={onOpenAdmissionModal}
               className="btn btn-primary btn-lg hero-btn"
             >
-              <span>Apply for Admission</span>
+              <span>{t.hero.btnApply}</span>
               <ArrowRight size={18} />
             </button>
 
@@ -104,23 +114,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
               className="btn btn-outline-white btn-lg hero-btn"
             >
               <Compass size={18} />
-              <span>About Society & School</span>
+              <span>{t.hero.btnAbout}</span>
             </a>
           </div>
 
           {/* Quick Credibility Features */}
-          <div className="hero-credibility" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', opacity: 0.9 }}>
+          <div className="hero-credibility" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', opacity: 0.95 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem' }}>
               <ShieldCheck size={18} color="var(--color-gold-base)" />
-              <span>100% SSC Passing Legacy</span>
+              <span>{t.hero.badgeSsc}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem' }}>
               <ShieldCheck size={18} color="var(--color-gold-base)" />
-              <span>Govt. Scholarship & Talent Coaching</span>
+              <span>{t.hero.badgeScholarship}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem' }}>
               <ShieldCheck size={18} color="var(--color-gold-base)" />
-              <span>Scout-Guide & MCC Training</span>
+              <span>{t.hero.badgeScout}</span>
             </div>
           </div>
         </div>
@@ -147,7 +157,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
               textAlign: 'center',
             }}
           >
-            {KEY_STATS.map((stat) => (
+            {stats.map((stat) => (
               <div key={stat.label} style={{ padding: '0.5rem' }}>
                 <div
                   style={{
@@ -161,7 +171,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenAdmissionModal }
                 >
                   {stat.value}
                 </div>
-                <div style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.75)', fontWeight: 500 }}>
+                <div style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.8)', fontWeight: 500 }}>
                   {stat.label}
                 </div>
               </div>

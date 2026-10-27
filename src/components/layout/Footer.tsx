@@ -1,9 +1,28 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, ArrowUpRight } from 'lucide-react';
-import { SCHOOL_INFO, CONTACT_INFO } from '../../data/schoolData';
-import { FOOTER_QUICK_LINKS, FOOTER_POLICY_LINKS } from '../../data/navigation';
+import { CONTACT_INFO } from '../../data/schoolData';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Footer: React.FC = () => {
+  const { t } = useLanguage();
+
+  const quickLinks = [
+    { label: t.nav.academics, href: '#academics' },
+    { label: t.nav.toppers, href: '#toppers' },
+    { label: t.nav.pride, href: '#pride' },
+    { label: t.nav.admissions, href: '#admissions' },
+    { label: t.nav.facilities, href: '#facilities' },
+    { label: t.nav.achievements, href: '#achievements' },
+    { label: t.nav.faculty, href: '#faculty' },
+  ];
+
+  const policyLinks = [
+    { label: t.nav.about, href: '#about' },
+    { label: t.nav.leadership, href: '#leadership' },
+    { label: t.nav.gallery, href: '#gallery' },
+    { label: t.nav.contact, href: '#contact' },
+  ];
+
   return (
     <footer
       style={{
@@ -53,28 +72,28 @@ export const Footer: React.FC = () => {
                   NEMS SANGAMNER
                 </div>
                 <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', color: 'var(--color-gold-light)', textTransform: 'uppercase' }}>
-                  Allied Education Society
+                  {t.nav.alliedSociety}
                 </div>
               </div>
             </div>
 
             <p style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.25rem' }}>
-              {SCHOOL_INFO.tagline} · {SCHOOL_INFO.secondaryMotto}. {SCHOOL_INFO.missionStatement}
+              {t.footer.tagline}
             </p>
 
             <div className="badge badge-gold-dark" style={{ fontSize: '0.72rem' }}>
-              {SCHOOL_INFO.affiliation}
+              {t.footer.poweredBy}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 style={{ color: '#FFFFFF', fontSize: '1.1rem', marginBottom: '1.25rem', position: 'relative', display: 'inline-block' }}>
-              Explore
+              {t.footer.exploreTitle}
               <span style={{ position: 'absolute', bottom: '-6px', left: 0, width: '28px', height: '2px', backgroundColor: 'var(--color-gold-base)' }} />
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', marginTop: '0.5rem' }}>
-              {FOOTER_QUICK_LINKS.map((link) => (
+              {quickLinks.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
@@ -99,11 +118,11 @@ export const Footer: React.FC = () => {
           {/* Policies & Institutional */}
           <div>
             <h4 style={{ color: '#FFFFFF', fontSize: '1.1rem', marginBottom: '1.25rem', position: 'relative', display: 'inline-block' }}>
-              Institutional
+              {t.footer.policiesTitle}
               <span style={{ position: 'absolute', bottom: '-6px', left: 0, width: '28px', height: '2px', backgroundColor: 'var(--color-gold-base)' }} />
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', marginTop: '0.5rem' }}>
-              {FOOTER_POLICY_LINKS.map((link) => (
+              {policyLinks.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
@@ -129,7 +148,7 @@ export const Footer: React.FC = () => {
           {/* Contact Details */}
           <div>
             <h4 style={{ color: '#FFFFFF', fontSize: '1.1rem', marginBottom: '1.25rem', position: 'relative', display: 'inline-block' }}>
-              Contact Campus
+              {t.footer.contactTitle}
               <span style={{ position: 'absolute', bottom: '-6px', left: 0, width: '28px', height: '2px', backgroundColor: 'var(--color-gold-base)' }} />
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', fontSize: '0.88rem', color: 'rgba(255, 255, 255, 0.8)', marginTop: '0.5rem' }}>
@@ -147,7 +166,7 @@ export const Footer: React.FC = () => {
               </div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
                 <Clock size={18} color="var(--color-gold-base)" style={{ flexShrink: 0, marginTop: '2px' }} />
-                <span>{CONTACT_INFO.officeHours}</span>
+                <span>{t.nav.officeHours}</span>
               </div>
             </div>
           </div>
@@ -168,10 +187,10 @@ export const Footer: React.FC = () => {
           }}
         >
           <div>
-            © {new Date().getFullYear()} Allied Education Society's National English Medium School (NEMS), Sangamner.
+            © {new Date().getFullYear()} {t.footer.allRightsReserved}
           </div>
           <div>
-            100% SSC Results · Affiliated to MSBSHSE Pune · Kolhewadi Road, Sangamner
+            {t.footer.poweredBy} · Sangamner
           </div>
         </div>
       </div>

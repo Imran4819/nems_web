@@ -15,55 +15,38 @@ import {
   Eye,
   Target,
   CheckCircle2,
-  Award,
   School,
 } from 'lucide-react';
-import { ACHIEVEMENTS, MILESTONE_23_YEARS } from '../../data/schoolData';
 import { SectionHeader } from '../common/SectionHeader';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const AchievementsSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'achievements' | 'journey' | 'pathway'>('achievements');
+  const { t } = useLanguage();
 
-  // Map icon names from data to Lucide icon components
-  const renderIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'ShieldCheck':
-        return <ShieldCheck size={22} />;
-      case 'GraduationCap':
-        return <GraduationCap size={22} />;
-      case 'FileCheck2':
-        return <FileCheck2 size={22} />;
-      case 'HeartHandshake':
-        return <HeartHandshake size={22} />;
-      case 'Lightbulb':
-        return <Lightbulb size={22} />;
-      case 'UserCheck':
-        return <UserCheck size={22} />;
-      case 'MonitorPlay':
-        return <MonitorPlay size={22} />;
-      case 'Languages':
-        return <Languages size={22} />;
-      case 'Trophy':
-        return <Trophy size={22} />;
-      case 'Sparkles':
-        return <Sparkles size={22} />;
-      case 'Eye':
-        return <Eye size={22} />;
-      case 'Target':
-        return <Target size={22} />;
-      default:
-        return <Award size={22} />;
-    }
-  };
+  const iconList = [
+    <ShieldCheck size={22} key="shield" />,
+    <GraduationCap size={22} key="grad" />,
+    <FileCheck2 size={22} key="file" />,
+    <HeartHandshake size={22} key="heart" />,
+    <Lightbulb size={22} key="bulb" />,
+    <UserCheck size={22} key="user" />,
+    <MonitorPlay size={22} key="monitor" />,
+    <Languages size={22} key="lang" />,
+    <Trophy size={22} key="trophy" />,
+    <Sparkles size={22} key="sparkle" />,
+    <Eye size={22} key="eye" />,
+    <Target size={22} key="target" />,
+  ];
 
   return (
     <section id="achievements" className="section section-alt">
       <div className="container">
         <SectionHeader
-          eyebrow="Milestones & 23-Year Legacy"
-          title="Successful Completion of 23 Years"
-          highlightWord="23 Years"
-          description="Bonded to Build the Nation · Celebrating over two decades of transformative education, unbroken 100% SSC board results, and student triumphs in NEET, JEE, and CET."
+          eyebrow={t.achievements.eyebrow}
+          title={t.achievements.title}
+          highlightWord={t.achievements.highlightWord}
+          description={t.achievements.description}
         />
 
         {/* 23 Years Commemorative Milestone Banner */}
@@ -125,7 +108,7 @@ export const AchievementsSection: React.FC = () => {
                 }}
               >
                 <Sparkles size={14} />
-                <span>Official Brochure Milestone</span>
+                <span>{t.achievements.milestoneBadge}</span>
               </div>
 
               <h3
@@ -137,7 +120,7 @@ export const AchievementsSection: React.FC = () => {
                   lineHeight: 1.2,
                 }}
               >
-                {MILESTONE_23_YEARS.headline}
+                {t.achievements.milestoneTitle}
               </h3>
 
               <p
@@ -149,7 +132,7 @@ export const AchievementsSection: React.FC = () => {
                   maxWidth: '680px',
                 }}
               >
-                {MILESTONE_23_YEARS.summary}
+                {t.achievements.milestoneSummary}
               </p>
 
               {/* Quick Stat Pills */}
@@ -285,7 +268,7 @@ export const AchievementsSection: React.FC = () => {
                   zIndex: 3,
                 }}
               >
-                Successful Completion
+                {t.achievements.milestoneBadge}
               </div>
             </div>
           </div>
@@ -320,7 +303,7 @@ export const AchievementsSection: React.FC = () => {
             }}
           >
             <Trophy size={16} color={activeTab === 'achievements' ? 'var(--color-gold-light)' : 'var(--color-gold-base)'} />
-            <span>12 Core Achievements</span>
+            <span>{t.achievements.tabs.achievements}</span>
           </button>
 
           <button
@@ -342,7 +325,7 @@ export const AchievementsSection: React.FC = () => {
             }}
           >
             <School size={16} color={activeTab === 'journey' ? 'var(--color-gold-light)' : 'var(--color-gold-base)'} />
-            <span>Our 23-Year Successful Journey</span>
+            <span>{t.achievements.tabs.journey}</span>
           </button>
 
           <button
@@ -364,7 +347,7 @@ export const AchievementsSection: React.FC = () => {
             }}
           >
             <Target size={16} color={activeTab === 'pathway' ? 'var(--color-gold-light)' : 'var(--color-gold-base)'} />
-            <span>Pathway to Student Success</span>
+            <span>{t.achievements.tabs.pathway}</span>
           </button>
         </div>
 
@@ -378,7 +361,7 @@ export const AchievementsSection: React.FC = () => {
               marginBottom: '4.5rem',
             }}
           >
-            {MILESTONE_23_YEARS.achievements.map((item, index) => (
+            {t.achievements.milestones12.map((item, index) => (
               <div
                 key={index}
                 className="card"
@@ -404,7 +387,7 @@ export const AchievementsSection: React.FC = () => {
                     flexShrink: 0,
                   }}
                 >
-                  {renderIcon(item.icon)}
+                  {iconList[index % iconList.length]}
                 </div>
                 <div>
                   <h4 style={{ fontSize: '1rem', color: 'var(--color-navy-base)', margin: '0 0 0.35rem 0', fontWeight: 700 }}>
@@ -429,7 +412,7 @@ export const AchievementsSection: React.FC = () => {
               marginBottom: '4.5rem',
             }}
           >
-            {MILESTONE_23_YEARS.journeyPillars.map((pillar, idx) => (
+            {t.achievements.milestones12.slice(0, 6).map((item, idx) => (
               <div
                 key={idx}
                 className="card"
@@ -462,14 +445,14 @@ export const AchievementsSection: React.FC = () => {
                       borderRadius: '4px',
                     }}
                   >
-                    {pillar.subtitle}
+                    NEMS Sangamner
                   </span>
                 </div>
                 <h4 style={{ fontSize: '1.15rem', color: 'var(--color-navy-base)', margin: 0, fontWeight: 700 }}>
-                  {pillar.title}
+                  {item.title}
                 </h4>
                 <p style={{ fontSize: '0.92rem', color: 'var(--color-text-body)', lineHeight: '1.6', margin: 0 }}>
-                  {pillar.desc}
+                  {item.desc}
                 </p>
               </div>
             ))}
@@ -490,13 +473,13 @@ export const AchievementsSection: React.FC = () => {
           >
             <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 2rem auto' }}>
               <span className="badge badge-navy" style={{ marginBottom: '0.5rem' }}>
-                Proven Pedagogical Blueprint
+                NEMS Sangamner
               </span>
               <h3 style={{ fontSize: '1.65rem', color: 'var(--color-navy-base)', margin: '0 0 0.5rem 0' }}>
-                12 Principles of Student Achievement
+                {t.achievements.tabs.pathway}
               </h3>
               <p style={{ fontSize: '0.92rem', color: 'var(--color-text-muted)', margin: 0 }}>
-                Every student at NEMS experiences these daily standards designed to mold high academic aptitude and deep moral character.
+                {t.achievements.description}
               </p>
             </div>
 
@@ -507,7 +490,7 @@ export const AchievementsSection: React.FC = () => {
                 gap: '1rem',
               }}
             >
-              {MILESTONE_23_YEARS.pathwayToSuccess.map((principle, pIdx) => (
+              {t.achievements.milestones12.map((item, pIdx) => (
                 <div
                   key={pIdx}
                   style={{
@@ -522,7 +505,7 @@ export const AchievementsSection: React.FC = () => {
                 >
                   <CheckCircle2 size={18} color="var(--color-gold-base)" style={{ flexShrink: 0, marginTop: '2px' }} />
                   <span style={{ fontSize: '0.88rem', color: 'var(--color-navy-base)', fontWeight: 600, lineHeight: 1.45 }}>
-                    {principle}
+                    {item.title}: {item.desc}
                   </span>
                 </div>
               ))}
@@ -532,17 +515,8 @@ export const AchievementsSection: React.FC = () => {
 
         {/* Institutional Accolades & Trophies Grid */}
         <div style={{ marginTop: '1rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <span className="badge badge-gold" style={{ marginBottom: '0.5rem' }}>
-              State & District Accolades
-            </span>
-            <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy-base)', margin: 0 }}>
-              Institutional Honors & Board Distinctions
-            </h3>
-          </div>
-
           <div className="grid-2">
-            {ACHIEVEMENTS.map((ach) => (
+            {t.achievements.items.map((ach) => (
               <div
                 key={ach.id}
                 className="card"

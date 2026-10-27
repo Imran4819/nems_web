@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from 'lucide-react';
 import { CONTACT_INFO } from '../../data/schoolData';
 import { SectionHeader } from '../common/SectionHeader';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const ContactSection: React.FC = () => {
+  const { t } = useLanguage();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [subject, setSubject] = useState('Admission Query');
+  const [subject, setSubject] = useState('Admission');
   const [message, setMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -20,10 +22,10 @@ export const ContactSection: React.FC = () => {
     <section id="contact" className="section">
       <div className="container">
         <SectionHeader
-          eyebrow="Connect With Us"
-          title="Campus Visit & Inquiries"
-          highlightWord="Campus Visit"
-          description="We welcome prospective parents and guardians to visit our campus during office hours for an escorted walkthrough."
+          eyebrow={t.contact.eyebrow}
+          title={t.contact.title}
+          highlightWord={t.contact.highlightWord}
+          description={t.contact.description}
         />
 
         <div
@@ -47,15 +49,15 @@ export const ContactSection: React.FC = () => {
             }}
           >
             <span className="badge badge-gold-dark" style={{ marginBottom: '1.25rem' }}>
-              Allied Education Society Campus
+              {t.contact.campusCardSub}
             </span>
 
             <h3 style={{ fontSize: '1.65rem', color: '#FFFFFF', marginBottom: '1rem' }}>
-              National English Medium School (NEMS)
+              {t.contact.campusCardTitle}
             </h3>
 
-            <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '0.94rem', lineHeight: '1.6', marginBottom: '2rem' }}>
-              Located at Kolhewadi Road, Sangamner. Parents and guardians are invited to visit the campus during office hours for admissions and inquiries.
+            <p style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.94rem', lineHeight: '1.6', marginBottom: '2rem' }}>
+              {t.contact.campusCardDesc}
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
@@ -76,7 +78,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--color-gold-light)', fontWeight: 700, textTransform: 'uppercase' }}>
-                    Campus Location
+                    {t.contact.addressLabel}
                   </div>
                   <div style={{ fontSize: '0.95rem', color: '#FFFFFF', marginTop: '2px' }}>
                     {CONTACT_INFO.address}
@@ -101,7 +103,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--color-gold-light)', fontWeight: 700, textTransform: 'uppercase' }}>
-                    Contact Numbers
+                    {t.contact.phoneLabel}
                   </div>
                   <div style={{ fontSize: '0.95rem', color: '#FFFFFF', marginTop: '2px' }}>
                     <a href={`tel:${CONTACT_INFO.phone}`} style={{ color: '#FFFFFF' }}>{CONTACT_INFO.phone}</a>
@@ -111,7 +113,7 @@ export const ContactSection: React.FC = () => {
                   </div>
                   {CONTACT_INFO.landline && (
                     <div style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.75)', marginTop: '2px' }}>
-                      Landline: {CONTACT_INFO.landline}
+                      {t.contact.landlineLabel}: {CONTACT_INFO.landline}
                     </div>
                   )}
                 </div>
@@ -134,7 +136,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--color-gold-light)', fontWeight: 700, textTransform: 'uppercase' }}>
-                    Official Email
+                    {t.contact.emailLabel}
                   </div>
                   <div style={{ fontSize: '0.95rem', color: '#FFFFFF', marginTop: '2px' }}>
                     <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: '#FFFFFF' }}>{CONTACT_INFO.email}</a>
@@ -159,10 +161,10 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--color-gold-light)', fontWeight: 700, textTransform: 'uppercase' }}>
-                    Visiting Hours
+                    {t.contact.timingsLabel}
                   </div>
                   <div style={{ fontSize: '0.95rem', color: '#FFFFFF', marginTop: '2px' }}>
-                    {CONTACT_INFO.officeHours}
+                    {t.nav.officeHours}
                   </div>
                 </div>
               </div>
@@ -174,21 +176,21 @@ export const ContactSection: React.FC = () => {
             {!formSubmitted ? (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <h3 style={{ fontSize: '1.45rem', color: 'var(--color-navy-base)', marginBottom: '0.25rem' }}>
-                  Send an Inquiry
+                  {t.contact.formTitle}
                 </h3>
                 <p style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)', marginBottom: '0.5rem' }}>
-                  Have questions about fees, transport routes, or curriculum? Reach out directly.
+                  {t.contact.formDesc}
                 </p>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="form-row">
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.35rem' }}>
-                      Your Full Name *
+                      {t.contact.fieldName} *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. S. Sen"
+                      placeholder={t.contact.fieldName}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       style={{
@@ -202,12 +204,12 @@ export const ContactSection: React.FC = () => {
 
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.35rem' }}>
-                      Phone Number *
+                      {t.contact.fieldPhone} *
                     </label>
                     <input
                       type="tel"
                       required
-                      placeholder="+91 98300 00000"
+                      placeholder="+91 9767008294"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       style={{
@@ -223,12 +225,12 @@ export const ContactSection: React.FC = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="form-row">
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.35rem' }}>
-                      Email Address *
+                      {t.contact.fieldEmail} *
                     </label>
                     <input
                       type="email"
                       required
-                      placeholder="you@email.com"
+                      placeholder="parent@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       style={{
@@ -242,7 +244,7 @@ export const ContactSection: React.FC = () => {
 
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.35rem' }}>
-                      Inquiry Category
+                      {t.contact.fieldSubject}
                     </label>
                     <select
                       value={subject}
@@ -255,23 +257,22 @@ export const ContactSection: React.FC = () => {
                         background: '#FFFFFF',
                       }}
                     >
-                      <option value="Admission Query">Admission Query (2025–26)</option>
-                      <option value="Transport Route">School Bus & Transport Route</option>
-                      <option value="Fee Structure">Fee Structure & Scholarships</option>
-                      <option value="Campus Tour">Campus Tour Booking</option>
-                      <option value="General Information">General Information</option>
+                      <option value="Admission">{t.contact.optAdmission}</option>
+                      <option value="Fee">{t.contact.optFee}</option>
+                      <option value="Curriculum">{t.contact.optCurriculum}</option>
+                      <option value="General">{t.contact.optGeneral}</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.35rem' }}>
-                    Your Message *
+                    {t.contact.fieldMessage} *
                   </label>
                   <textarea
                     required
                     rows={4}
-                    placeholder="Write your questions or requested appointment dates..."
+                    placeholder={t.contact.fieldMessage}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     style={{
@@ -286,7 +287,7 @@ export const ContactSection: React.FC = () => {
 
                 <button type="submit" className="btn btn-navy" style={{ padding: '0.85rem', marginTop: '0.5rem' }}>
                   <Send size={18} />
-                  <span>Send Message to Admissions Office</span>
+                  <span>{t.contact.btnSubmit}</span>
                 </button>
               </form>
             ) : (
@@ -304,10 +305,10 @@ export const ContactSection: React.FC = () => {
                   <CheckCircle2 size={44} />
                 </div>
                 <h3 style={{ fontSize: '1.5rem', color: 'var(--color-navy-base)', marginBottom: '0.5rem' }}>
-                  Message Received!
+                  {t.contact.successMsg}
                 </h3>
                 <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', maxWidth: '400px', margin: '0 auto 1.5rem auto' }}>
-                  Thank you, {name}. Our admissions desk will review your inquiry regarding <strong>{subject}</strong> and reach out to you via {email || phone} within 1 business day.
+                  {name} ({phone || email})
                 </p>
                 <button
                   className="btn btn-outline-navy btn-sm"
@@ -316,7 +317,7 @@ export const ContactSection: React.FC = () => {
                     setMessage('');
                   }}
                 >
-                  Send Another Message
+                  {t.contact.btnReset}
                 </button>
               </div>
             )}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, Phone, Mail, Sparkles } from 'lucide-react';
-import { NAV_LINKS } from '../../data/navigation';
-import { CONTACT_INFO } from '../../data/schoolData';
+import { Menu, X, ChevronRight, Phone, Mail, Sparkles, Images } from 'lucide-react';
+import { CONTACT_INFO, GALLERY_ITEMS } from '../../data/schoolData';
 import { useScrollPosition } from '../../hooks/useScrollPosition';
+import { useLanguage } from '../../context/LanguageContext';
+import { LanguageSelector } from '../common/LanguageSelector';
 
 interface NavbarProps {
   activeSection: string;
@@ -17,6 +18,22 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const { isScrolled } = useScrollPosition();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t, language } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.home, href: '#home', key: 'home' },
+    { label: t.nav.about, href: '#about', key: 'about' },
+    { label: t.nav.leadership, href: '#leadership', key: 'leadership' },
+    { label: t.nav.academics, href: '#academics', key: 'academics' },
+    { label: t.nav.facilities, href: '#facilities', key: 'facilities' },
+    { label: t.nav.toppers, href: '#toppers', key: 'toppers' },
+    { label: t.nav.pride, href: '#pride', key: 'pride' },
+    { label: t.nav.faculty, href: '#faculty', key: 'faculty' },
+    { label: t.nav.achievements, href: '#achievements', key: 'achievements' },
+    { label: t.nav.gallery, href: '#gallery', key: 'gallery' },
+    { label: t.nav.admissions, href: '#admissions', key: 'admissions' },
+    { label: t.nav.contact, href: '#contact', key: 'contact' },
+  ];
 
   // Prevent background scroll when sidebar drawer is open
   useEffect(() => {
@@ -50,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           zIndex: 900,
           backgroundColor: isScrolled
             ? 'rgba(7, 21, 39, 0.94)'
-            : 'rgba(7, 21, 39, 0.35)',
+            : 'rgba(7, 21, 39, 0.45)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
           borderBottom: isScrolled
@@ -119,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   marginTop: '2px',
                 }}
               >
-                National English Medium School · Sangamner
+                {t.nav.brandTagline}
               </span>
             </div>
           </a>
@@ -129,15 +146,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '1.35rem',
+              gap: '1.25rem',
             }}
             className="desktop-nav"
           >
-            {NAV_LINKS.slice(0, 7).map((link) => {
+            {navLinks.slice(0, 7).map((link) => {
               const isActive = activeSection === link.href.replace('#', '');
               return (
                 <a
-                  key={link.label}
+                  key={link.key}
                   href={link.href}
                   style={{
                     fontSize: '0.9rem',
@@ -173,6 +190,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               );
             })}
 
+            {/* Language Selector Dropdown */}
+            <LanguageSelector variant="navbar" />
+
             {onOpenChatbot && (
               <button
                 onClick={onOpenChatbot}
@@ -190,7 +210,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                   borderRadius: 'var(--radius-full)',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
-                  marginLeft: '0.25rem',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'var(--color-gold-base)';
@@ -202,39 +221,41 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }}
               >
                 <Sparkles size={14} />
-                <span>Ask NEMS AI</span>
+                <span>{t.nav.askAi}</span>
               </button>
             )}
 
             <button
               onClick={onOpenAdmissionModal}
               className="btn btn-primary btn-sm"
-              style={{ marginLeft: '0.25rem' }}
             >
-              Apply Now
+              {t.nav.applyNow}
             </button>
           </nav>
 
-          {/* Mobile Hamburger Button */}
-          <button
-            className="mobile-toggle"
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open Sidebar Menu from Left"
-            style={{
-              display: 'none',
-              padding: '10px',
-              borderRadius: '8px',
-              backgroundColor: 'rgba(255, 255, 255, 0.12)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              alignItems: 'center',
-              justifyContent: 'center',
-              minWidth: '44px',
-              minHeight: '44px',
-              cursor: 'pointer',
-            }}
-          >
-            <Menu size={22} color="#FFFFFF" />
-          </button>
+          {/* Mobile Right Controls: Language Selector + Hamburger Menu */}
+          <div className="mobile-actions" style={{ display: 'none', alignItems: 'center', gap: '0.6rem' }}>
+            <LanguageSelector variant="navbar" />
+            <button
+              className="mobile-toggle"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open Sidebar Menu from Left"
+              style={{
+                display: 'flex',
+                padding: '10px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minWidth: '42px',
+                minHeight: '42px',
+                cursor: 'pointer',
+              }}
+            >
+              <Menu size={22} color="#FFFFFF" />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -304,7 +325,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   marginTop: '2px',
                 }}
               >
-                Allied Education Society
+                {t.nav.alliedSociety}
               </div>
             </div>
           </div>
@@ -327,22 +348,30 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
 
+        {/* Language Switcher in Drawer */}
+        <div style={{ padding: '0.85rem 1rem 0.35rem 1rem' }}>
+          <div style={{ fontSize: '0.74rem', fontWeight: 700, color: 'var(--color-text-muted)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            Language / भाषा निवडा:
+          </div>
+          <LanguageSelector variant="drawer" />
+        </div>
+
         {/* Sidebar Navigation Links */}
         <div
           style={{
             flex: 1,
             overflowY: 'auto',
-            padding: '1rem 0.75rem',
+            padding: '0.5rem 0.75rem',
             display: 'flex',
             flexDirection: 'column',
             gap: '0.35rem',
           }}
         >
-          {NAV_LINKS.map((link) => {
+          {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace('#', '');
             return (
               <a
-                key={link.label}
+                key={link.key}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
@@ -367,6 +396,130 @@ export const Navbar: React.FC<NavbarProps> = ({
               </a>
             );
           })}
+
+          {/* Sidebar Campus Gallery Showcase */}
+          <div
+            style={{
+              marginTop: '1.25rem',
+              marginBottom: '0.5rem',
+              padding: '0.85rem',
+              backgroundColor: '#F8FAFC',
+              borderRadius: '12px',
+              border: '1px solid var(--color-border-subtle)',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '0.65rem',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                <Images size={15} color="var(--color-gold-dark)" />
+                <span
+                  style={{
+                    fontSize: '0.82rem',
+                    fontWeight: 700,
+                    color: 'var(--color-navy-base)',
+                  }}
+                >
+                  {t.nav.gallery}
+                </span>
+              </div>
+              <a
+                href="#gallery"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  fontSize: '0.74rem',
+                  fontWeight: 600,
+                  color: 'var(--color-gold-dark)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '2px',
+                  textDecoration: 'none',
+                }}
+              >
+                <span>{language === 'mr' ? 'सर्व पहा' : language === 'hi' ? 'सभी देखें' : 'View all'}</span>
+                <ChevronRight size={12} />
+              </a>
+            </div>
+
+            {/* 2x2 Photo Grid */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2, 1fr)',
+                gap: '0.45rem',
+              }}
+            >
+              {GALLERY_ITEMS.slice(0, 4).map((item) => {
+                const localizedTitle =
+                  t.gallery.items.find((gi) => gi.id === item.id)?.title || item.title;
+                return (
+                  <a
+                    key={item.id}
+                    href="#gallery"
+                    onClick={() => setMobileMenuOpen(false)}
+                    style={{
+                      position: 'relative',
+                      borderRadius: '6px',
+                      overflow: 'hidden',
+                      aspectRatio: '4 / 3',
+                      display: 'block',
+                      boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                      backgroundColor: 'var(--color-navy-dark)',
+                    }}
+                    title={localizedTitle}
+                  >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                      transition: 'transform 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'scale(1.08)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: 'linear-gradient(to top, rgba(7, 21, 39, 0.7) 0%, transparent 60%)',
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      padding: '4px 6px',
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: '#FFFFFF',
+                        fontSize: '0.62rem',
+                        fontWeight: 600,
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        display: 'block',
+                        width: '100%',
+                      }}
+                    >
+                      {localizedTitle}
+                    </span>
+                  </div>
+                </a>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         {/* Sidebar Footer with CTA and Quick Contact */}
@@ -403,7 +556,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
             >
               <Sparkles size={16} color="var(--color-gold-base)" />
-              <span>Ask NEMS AI Assistant</span>
+              <span>{t.nav.askAi}</span>
             </button>
           )}
 
@@ -415,7 +568,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="btn btn-primary"
             style={{ width: '100%', padding: '0.85rem' }}
           >
-            Apply for Admission 2026–27
+            {t.nav.applyNow}
           </button>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', fontSize: '0.82rem', color: 'var(--color-text-muted)' }}>
@@ -443,7 +596,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           .desktop-nav {
             display: none !important;
           }
-          .mobile-toggle {
+          .mobile-actions {
             display: flex !important;
           }
         }

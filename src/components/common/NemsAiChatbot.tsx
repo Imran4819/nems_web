@@ -17,6 +17,8 @@ import {
   ADMISSION_REQUIREMENTS,
 } from '../../data/schoolData';
 import type { StudentTopper, AlumniPride, TrusteeLeader } from '../../types';
+import { useLanguage } from '../../context/LanguageContext';
+import { LanguageSelector } from './LanguageSelector';
 
 export interface ChatMessage {
   id: string;
@@ -51,6 +53,7 @@ export const NemsAiChatbot: React.FC<NemsAiChatbotProps> = ({
   onToggle,
   onOpenAdmissionModal,
 }) => {
+  const { t, language } = useLanguage();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -59,20 +62,20 @@ export const NemsAiChatbot: React.FC<NemsAiChatbotProps> = ({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Initialize with a welcoming message
+  // Initialize with localized welcoming message and update if language changes
   useEffect(() => {
-    if (messages.length === 0) {
+    if (messages.length <= 1) {
       setMessages([
         {
           id: 'welcome-1',
           sender: 'bot',
-          text: `Hello and welcome to **National English Medium School (NEMS), Sangamner**! 🏫✨\n\nI am **NEMS AI**, your 24/7 intelligent campus assistant. How can I help you today? You can ask me anything about admissions, our unbroken 100% SSC board legacy, doctors & engineers alumni, school facilities, or fees.`,
+          text: t.chatbot.greeting,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          suggestions: INITIAL_SUGGESTIONS,
+          suggestions: t.chatbot.suggestions,
         },
       ]);
     }
-  }, []);
+  }, [language, t]);
 
   // Auto-scroll to bottom of chat
   const scrollToBottom = () => {
@@ -722,10 +725,11 @@ export const NemsAiChatbot: React.FC<NemsAiChatbotProps> = ({
             </div>
 
             {/* Header Action Buttons */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <LanguageSelector variant="chatbot" />
               <button
                 onClick={handleResetChat}
-                title="Restart conversation"
+                title={t.chatbot.clearChat}
                 style={{
                   background: 'transparent',
                   border: 'none',
@@ -739,11 +743,11 @@ export const NemsAiChatbot: React.FC<NemsAiChatbotProps> = ({
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)')}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
               >
-                <RotateCcw size={16} />
+                <RotateCcw size={15} />
               </button>
               <button
                 onClick={onToggle}
-                title="Minimize chat"
+                title={t.chatbot.minChat}
                 style={{
                   background: 'transparent',
                   border: 'none',
@@ -757,7 +761,7 @@ export const NemsAiChatbot: React.FC<NemsAiChatbotProps> = ({
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)')}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
               >
-                <Minimize2 size={16} />
+                <Minimize2 size={15} />
               </button>
             </div>
           </div>
@@ -965,7 +969,7 @@ export const NemsAiChatbot: React.FC<NemsAiChatbotProps> = ({
                   handleSendMessage();
                 }
               }}
-              placeholder="Ask NEMS AI anything (e.g. admissions, fees, results)..."
+              placeholder={t.chatbot.placeholder}
               style={{
                 flex: 1,
                 border: '1px solid #CBD5E1',

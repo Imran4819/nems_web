@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, CheckCircle, Send, GraduationCap } from 'lucide-react';
 import type { AdmissionFormData } from '../../types';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface AdmissionModalProps {
   isOpen: boolean;
@@ -8,13 +9,14 @@ interface AdmissionModalProps {
 }
 
 export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState<AdmissionFormData>({
     studentName: '',
     parentName: '',
     email: '',
     phone: '',
-    targetGrade: 'LKG',
-    academicYear: '2025–26',
+    targetGrade: 'Nursery',
+    academicYear: '2026–27',
     message: '',
   });
 
@@ -31,6 +33,22 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
     setSubmitted(false);
     onClose();
   };
+
+  const gradeOptions = [
+    'Nursery',
+    'Jr. KG',
+    'Sr. KG',
+    'Class I',
+    'Class II',
+    'Class III',
+    'Class IV',
+    'Class V',
+    'Class VI',
+    'Class VII',
+    'Class VIII',
+    'Class IX',
+    'Class X',
+  ];
 
   return (
     <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
@@ -50,7 +68,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
             justifyContent: 'center',
             cursor: 'pointer',
           }}
-          aria-label="Close modal"
+          aria-label={t.modal.btnClose}
         >
           <X size={18} color="#0F172A" />
         </button>
@@ -70,24 +88,24 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
                 <GraduationCap size={24} />
               </div>
               <div>
-                <span className="badge badge-gold" style={{ fontSize: '0.7rem' }}>Admissions 2025–26</span>
-                <h3 style={{ fontSize: '1.45rem', marginTop: '0.2rem' }}>Apply for Admission</h3>
+                <span className="badge badge-gold" style={{ fontSize: '0.7rem' }}>{t.modal.badge}</span>
+                <h3 style={{ fontSize: '1.45rem', marginTop: '0.2rem' }}>{t.modal.title}</h3>
               </div>
             </div>
 
             <p style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)', marginBottom: '1.5rem' }}>
-              Fill in your details to begin the registration process. Our admissions desk will schedule a campus visit and interaction within 24 hours.
+              {t.modal.desc}
             </p>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.35rem' }}>
-                  Student's Full Name *
+                  {t.modal.lblStudentName} *
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Aarav Sharma"
+                  placeholder={t.modal.lblStudentName}
                   value={formData.studentName}
                   onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
                   style={{
@@ -102,12 +120,12 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
               <div className="modal-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.35rem' }}>
-                    Parent / Guardian Name *
+                    {t.modal.lblParentName} *
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Rajesh Sharma"
+                    placeholder={t.modal.lblParentName}
                     value={formData.parentName}
                     onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
                     style={{
@@ -121,7 +139,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.35rem' }}>
-                    Grade Seeking Admission *
+                    {t.modal.lblGrade} *
                   </label>
                   <select
                     value={formData.targetGrade}
@@ -134,7 +152,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
                       background: '#FFFFFF',
                     }}
                   >
-                    {['LKG', 'UKG'].map((cls) => (
+                    {gradeOptions.map((cls) => (
                       <option key={cls} value={cls}>{cls}</option>
                     ))}
                   </select>
@@ -144,12 +162,12 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
               <div className="modal-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.35rem' }}>
-                    Contact Phone Number *
+                    {t.modal.lblPhone} *
                   </label>
                   <input
                     type="tel"
                     required
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 9767008294"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     style={{
@@ -163,7 +181,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.35rem' }}>
-                    Email Address *
+                    {t.modal.lblEmail} *
                   </label>
                   <input
                     type="email"
@@ -183,11 +201,11 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
 
               <div>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.35rem' }}>
-                  Additional Notes or Questions
+                  {t.modal.lblMessage}
                 </label>
                 <textarea
                   rows={3}
-                  placeholder="Tell us about previous school, special interests, or transportation needs..."
+                  placeholder={t.modal.lblMessage}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   style={{
@@ -206,8 +224,12 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
                 style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem' }}
               >
                 <Send size={18} />
-                Submit Application Inquiry
+                <span>{t.modal.btnSubmit}</span>
               </button>
+
+              <div style={{ fontSize: '0.76rem', color: 'var(--color-text-muted)', textAlign: 'center' }}>
+                {t.modal.privacyNote}
+              </div>
             </form>
           </div>
         ) : (
@@ -224,14 +246,12 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({ isOpen, onClose 
             >
               <CheckCircle size={48} />
             </div>
-            <h3 style={{ fontSize: '1.6rem', marginBottom: '0.5rem' }}>Application Submitted!</h3>
+            <h3 style={{ fontSize: '1.6rem', marginBottom: '0.5rem' }}>{t.modal.successTitle}</h3>
             <p style={{ color: 'var(--color-text-muted)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
-              Thank you, <strong>{formData.parentName}</strong>. We have received your application inquiry for{' '}
-              <strong>{formData.studentName} ({formData.targetGrade})</strong> for Academic Session 2025–26. Our admissions counselor will call{' '}
-              <strong>{formData.phone}</strong> shortly.
+              {t.modal.successDesc}
             </p>
             <button className="btn btn-navy" onClick={handleReset}>
-              Close & Return to Website
+              {t.modal.btnClose}
             </button>
           </div>
         )}

@@ -1,56 +1,47 @@
-import React from 'react';
-import { Target, BookOpenCheck, Award, HeartHandshake, CheckCircle2 } from 'lucide-react';
+import { Target, BookOpenCheck, Award, HeartHandshake } from 'lucide-react';
 import { SectionHeader } from '../common/SectionHeader';
-import { SCHOOL_INFO, SOCIETY_GOALS, INSTITUTIONAL_HIGHLIGHTS } from '../../data/schoolData';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const AboutSection: React.FC = () => {
-  const pillars = [
-    {
-      icon: <Target size={28} color="var(--color-navy-base)" />,
-      title: 'Discipline as Foundation',
-      description: 'Cultivating time consciousness, self-reliance, respectful conduct, and focused study routines from Pre-Primary onwards.',
-    },
-    {
-      icon: <BookOpenCheck size={28} color="var(--color-navy-base)" />,
-      title: 'Concept & Application',
-      description: 'Moving beyond rote learning towards application-based knowledge and board analytical proficiency.',
-    },
-    {
-      icon: <Award size={28} color="var(--color-navy-base)" />,
-      title: '100% SSC Track Record',
-      description: 'An unbroken legacy of 100% passing results in the Maharashtra State Board examinations since the first batch.',
-    },
-    {
-      icon: <HeartHandshake size={28} color="var(--color-navy-base)" />,
-      title: 'Compassionate Community',
-      description: 'Fostering an inclusive, supportive ecosystem where students from all strata receive equal nurture and mentorship.',
-    },
+  const { t } = useLanguage();
+
+  const pillarIcons = [
+    <Target size={28} color="var(--color-navy-base)" key="target" />,
+    <BookOpenCheck size={28} color="var(--color-navy-base)" key="book" />,
+    <Award size={28} color="var(--color-navy-base)" key="award" />,
+    <HeartHandshake size={28} color="var(--color-navy-base)" key="heart" />,
   ];
+
+  const pillars = t.about.pillars.map((pillar, idx) => ({
+    icon: pillarIcons[idx % pillarIcons.length],
+    title: pillar.title,
+    description: pillar.desc,
+  }));
 
   return (
     <section id="about" className="section section-alt">
       <div className="container">
         <SectionHeader
-          eyebrow="Our Heritage & Vision"
-          title="Allied Education Society's Legacy"
-          highlightWord="Legacy"
-          description={SCHOOL_INFO.missionStatement}
+          eyebrow={t.about.eyebrow}
+          title={t.about.title}
+          highlightWord={t.about.highlightWord}
+          description={t.footer.mission}
         />
 
         {/* Main Narrative Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: '3.5rem', alignItems: 'center', marginBottom: '4rem' }} className="about-grid">
           <div>
             <span className="badge badge-gold" style={{ marginBottom: '1rem' }}>
-              Allied Education Society · Estd. 2002
+              {t.about.badgeSociety}
             </span>
             <h3 style={{ fontSize: '1.95rem', marginBottom: '1.25rem', color: 'var(--color-navy-base)', lineHeight: 1.25 }}>
-              "Bonded to Build the Nation" with Quality, Modern & Value-Based Education.
+              {t.about.heading}
             </h3>
             <p style={{ fontSize: '1.02rem', lineHeight: '1.7', color: 'var(--color-text-body)', marginBottom: '1.25rem' }}>
-              Founded under the visionary leadership of <strong>Late. Haji Abdul Karim Tamboli</strong> and <strong>Hon.Nazim Tamboli</strong>, Allied Education Society established National English Medium School (NEMS), Sangamner with a core motto: <em>"Bonded to Build the Nation"</em> and <em>"We Trust Al-Mighty"</em>.
+              {t.about.p1}
             </p>
             <p style={{ fontSize: '1.02rem', lineHeight: '1.7', color: 'var(--color-text-body)', marginBottom: '1.75rem' }}>
-              Situated at Kolhewadi Road in Sangamner, our campus bridges the gap between rural aspirations and contemporary global competence. With projector-equipped digital teaching, specialized scholarship examination coaching, Scout & Guide, and English grammar seminars, we ensure every student achieves scholastic excellence with humility.
+              {t.about.p2}
             </p>
 
             <div style={{ display: 'flex', gap: '2rem', borderLeft: '3px solid var(--color-gold-base)', paddingLeft: '1.25rem' }}>
@@ -58,19 +49,19 @@ export const AboutSection: React.FC = () => {
                 <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.65rem', fontWeight: 700, color: 'var(--color-navy-base)' }}>
                   100%
                 </div>
-                <div style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>SSC Board Passing Record</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>{t.about.stat1Label}</div>
               </div>
               <div>
                 <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.65rem', fontWeight: 700, color: 'var(--color-navy-base)' }}>
                   23+
                 </div>
-                <div style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>Years of Excellence</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>{t.about.stat2Label}</div>
               </div>
               <div>
                 <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.65rem', fontWeight: 700, color: 'var(--color-navy-base)' }}>
                   1,200+
                 </div>
-                <div style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>Students Nurtured</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>{t.about.stat3Label}</div>
               </div>
             </div>
           </div>
@@ -116,7 +107,7 @@ export const AboutSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Official Mission & 5 Core Goals from School Handbook */}
+        {/* Official Mission & 4 Core Goals from School Charter */}
         <div
           style={{
             marginBottom: '4.5rem',
@@ -128,10 +119,9 @@ export const AboutSection: React.FC = () => {
             position: 'relative',
           }}
         >
-          {/* Header matching Handbook Page 3 */}
-          <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 2.5rem auto' }}>
+          <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto 2.5rem auto' }}>
             <span className="badge badge-gold" style={{ marginBottom: '0.65rem' }}>
-              Official School Handbook Charter · Page 3
+              {t.about.goalsSubtitle}
             </span>
             <h3
               style={{
@@ -143,7 +133,7 @@ export const AboutSection: React.FC = () => {
                 margin: '0 0 1rem 0',
               }}
             >
-              Mission of National English Medium School
+              {t.about.goalsTitle}
             </h3>
             <div
               style={{
@@ -157,23 +147,8 @@ export const AboutSection: React.FC = () => {
                 borderLeft: '4px solid var(--color-gold-base)',
               }}
             >
-              "{SCHOOL_INFO.missionStatement}"
+              "{t.footer.mission}"
             </div>
-          </div>
-
-          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-            <h4
-              style={{
-                fontSize: '1.2rem',
-                color: 'var(--color-navy-base)',
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.06em',
-                margin: 0,
-              }}
-            >
-              Goals:
-            </h4>
           </div>
 
           <div
@@ -183,7 +158,7 @@ export const AboutSection: React.FC = () => {
               gap: '1.25rem',
             }}
           >
-            {SOCIETY_GOALS.map((goal) => (
+            {t.about.goals.map((goal) => (
               <div
                 key={goal.num}
                 className="card"
@@ -232,7 +207,7 @@ export const AboutSection: React.FC = () => {
                 letterSpacing: '0.02em',
               }}
             >
-              "{SCHOOL_INFO.secondaryMotto}"
+              "{t.footer.tagline}"
             </div>
             <div
               style={{
@@ -244,83 +219,17 @@ export const AboutSection: React.FC = () => {
                 letterSpacing: '0.1em',
               }}
             >
-              Institutional Guiding Principle · National English Medium School
+              {t.footer.poweredBy}
             </div>
           </div>
         </div>
 
-        {/* Special Bilingual Highlights from Wix Site */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            borderRadius: 'var(--radius-xl)',
-            padding: '3rem',
-            boxShadow: 'var(--shadow-md)',
-            border: '1px solid var(--color-border-subtle)',
-            marginBottom: '4rem',
-          }}
-        >
-          <div style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto 2.5rem auto' }}>
-            <span className="badge badge-navy" style={{ marginBottom: '0.5rem' }}>
-              Institutional Highlights
-            </span>
-            <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy-base)', margin: 0 }}>
-              Key Educational Features at NEMS Sangamner
-            </h3>
-            <p style={{ fontSize: '0.92rem', color: 'var(--color-text-muted)', marginTop: '0.5rem' }}>
-              Directly aligned with our commitment to balanced cognitive and moral student development.
-            </p>
-          </div>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '1.25rem',
-            }}
-          >
-            {INSTITUTIONAL_HIGHLIGHTS.map((spec) => (
-              <div
-                key={spec.title}
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '0.85rem',
-                  padding: '1rem',
-                  borderRadius: 'var(--radius-md)',
-                  backgroundColor: '#F8FAFC',
-                  border: '1px solid #E2E8F0',
-                }}
-              >
-                <div
-                  style={{
-                    width: '36px',
-                    height: '36px',
-                    borderRadius: '8px',
-                    backgroundColor: 'rgba(11, 37, 69, 0.08)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    color: 'var(--color-navy-base)',
-                  }}
-                >
-                  <CheckCircle2 size={20} color="var(--color-gold-base)" />
-                </div>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: '0.96rem', color: 'var(--color-navy-base)', lineHeight: 1.3 }}>
-                    {spec.title}
-                  </div>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--color-text-muted)', marginTop: '4px', lineHeight: 1.4 }}>
-                    {spec.description}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* 4 Pillars Grid */}
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy-base)' }}>
+            {t.about.pillarsTitle}
+          </h3>
+        </div>
         <div className="grid-4">
           {pillars.map((pillar) => (
             <div key={pillar.title} className="card" style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>

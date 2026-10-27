@@ -17,8 +17,9 @@ import { AdmissionsBannerSection } from './components/sections/AdmissionsBannerS
 import { ContactSection } from './components/sections/ContactSection';
 import { AdmissionModal } from './components/common/AdmissionModal';
 import { NemsAiChatbot } from './components/common/NemsAiChatbot';
+import { LanguageProvider } from './context/LanguageContext';
 
-export function App() {
+function AppContent() {
   const [isAdmissionModalOpen, setIsAdmissionModalOpen] = useState(false);
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
@@ -86,6 +87,14 @@ export function App() {
         onOpenAdmissionModal={handleOpenAdmission}
       />
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }
 

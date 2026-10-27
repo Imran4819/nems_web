@@ -1,32 +1,13 @@
 import React from 'react';
-import { Calendar, FileCheck, Users, GraduationCap, ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
-import { ADMISSION_REQUIREMENTS } from '../../data/schoolData';
+import { Calendar, ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface AdmissionsBannerSectionProps {
   onOpenAdmissionModal: () => void;
 }
 
 export const AdmissionsBannerSection: React.FC<AdmissionsBannerSectionProps> = ({ onOpenAdmissionModal }) => {
-  const steps = [
-    {
-      num: '01',
-      title: 'Online Inquiry / Registration',
-      desc: 'Submit the admission inquiry form online or obtain the prospectus from our campus office.',
-      icon: <FileCheck size={20} />,
-    },
-    {
-      num: '02',
-      title: 'Campus Interaction & Verification',
-      desc: 'Mandatory in-person meeting of candidate with parents; review of original certificates.',
-      icon: <Users size={20} />,
-    },
-    {
-      num: '03',
-      title: 'Seat Confirmation & Welcome Kit',
-      desc: 'Confirmation of admission, division allotment, school diary, and uniform guidance.',
-      icon: <GraduationCap size={20} />,
-    },
-  ];
+  const { t } = useLanguage();
 
   return (
     <section id="admissions" className="section" style={{ backgroundColor: 'var(--color-navy-base)', color: '#FFFFFF' }}>
@@ -56,82 +37,19 @@ export const AdmissionsBannerSection: React.FC<AdmissionsBannerSectionProps> = (
             }}
           >
             <Calendar size={14} color="var(--color-gold-base)" />
-            <span>Admissions Open for Academic Year 2025–26</span>
+            <span>{t.admissionsBanner.badge}</span>
           </div>
 
           <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', color: '#FFFFFF', marginBottom: '1.25rem' }}>
-            Give Your Child the Foundation for a{' '}
-            <span style={{ color: 'var(--color-gold-base)' }}>Brilliant Tomorrow</span>
+            {t.admissionsBanner.title}
           </h2>
 
-          <p style={{ color: 'rgba(255, 255, 255, 0.82)', fontSize: '1.05rem', lineHeight: '1.65' }}>
-            Admissions open for Pre-Primary (Nursery, Jr. KG, Sr. KG) up to Secondary Classes. Limited intake per classroom to guarantee individual teacher mentoring and 100% board success.
+          <p style={{ color: 'rgba(255, 255, 255, 0.88)', fontSize: '1.05rem', lineHeight: '1.65' }}>
+            {t.admissionsBanner.subtitle}
           </p>
         </div>
 
-        {/* Steps Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '2rem',
-            marginBottom: '3rem',
-          }}
-          className="steps-grid"
-        >
-          {steps.map((st) => (
-            <div
-              key={st.num}
-              style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '2rem',
-                position: 'relative',
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: '2.5rem',
-                  fontWeight: 800,
-                  color: 'rgba(197, 160, 89, 0.35)',
-                  position: 'absolute',
-                  top: '1.25rem',
-                  right: '1.5rem',
-                  lineHeight: 1,
-                }}
-              >
-                {st.num}
-              </div>
-
-              <div
-                style={{
-                  width: '44px',
-                  height: '44px',
-                  borderRadius: '10px',
-                  backgroundColor: 'var(--color-gold-base)',
-                  color: '#071527',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1.25rem',
-                }}
-              >
-                {st.icon}
-              </div>
-
-              <h3 style={{ fontSize: '1.2rem', color: '#FFFFFF', marginBottom: '0.5rem' }}>
-                {st.title}
-              </h3>
-              <p style={{ fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.75)', lineHeight: '1.55', margin: 0 }}>
-                {st.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Required Documents Checklist from Wix Notice */}
+        {/* Required Documents Checklist */}
         <div
           style={{
             backgroundColor: 'rgba(7, 21, 39, 0.8)',
@@ -144,7 +62,7 @@ export const AdmissionsBannerSection: React.FC<AdmissionsBannerSectionProps> = (
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '1.25rem' }}>
             <AlertCircle size={22} color="var(--color-gold-base)" />
             <h3 style={{ fontSize: '1.35rem', color: '#FFFFFF', margin: 0 }}>
-              Mandatory Admission Documents Checklist
+              {t.admissionsBanner.reqTitle}
             </h3>
           </div>
 
@@ -155,7 +73,7 @@ export const AdmissionsBannerSection: React.FC<AdmissionsBannerSectionProps> = (
               gap: '1rem',
             }}
           >
-            {ADMISSION_REQUIREMENTS.map((req, i) => (
+            {t.admissionsBanner.requirements.map((req, i) => (
               <div
                 key={i}
                 style={{
@@ -197,25 +115,17 @@ export const AdmissionsBannerSection: React.FC<AdmissionsBannerSectionProps> = (
           }}
         >
           <div style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-gold-light)' }}>
-            Admissions Office at Kolhewadi Road Campus open Monday to Saturday, 8:00 AM – 5:00 PM
+            {t.nav.brandTagline} · {t.nav.officeHours}
           </div>
           <button
             onClick={onOpenAdmissionModal}
             className="btn btn-primary btn-lg"
           >
-            <span>Start Online Application Form</span>
+            <span>{t.admissionsBanner.btnApply}</span>
             <ArrowRight size={18} />
           </button>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 800px) {
-          .steps-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 };

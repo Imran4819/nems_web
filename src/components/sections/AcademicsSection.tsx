@@ -1,24 +1,28 @@
 import React, { useState } from 'react';
 import { BookOpen, CheckCircle2, GraduationCap, ClipboardCheck } from 'lucide-react';
-import { ACADEMIC_PROGRAMS, EXAM_PATTERN } from '../../data/schoolData';
 import { SectionHeader } from '../common/SectionHeader';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface AcademicsSectionProps {
   onOpenAdmissionModal: () => void;
 }
 
 export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmissionModal }) => {
-  const [activeTab, setActiveTab] = useState(ACADEMIC_PROGRAMS[0].id);
-  const activeProgram = ACADEMIC_PROGRAMS.find((p) => p.id === activeTab) || ACADEMIC_PROGRAMS[0];
+  const { t } = useLanguage();
+  const programs = t.academics.programs;
+  const [activeTab, setActiveTab] = useState(programs[0].id);
+
+  // Fallback to active program or first program
+  const activeProgram = programs.find((p) => p.id === activeTab) || programs[0];
 
   return (
     <section id="academics" className="section section-alt">
       <div className="container">
         <SectionHeader
-          eyebrow="Maharashtra State Board Curriculum"
-          title="Structured Excellence: Pre-Primary to Class X"
-          highlightWord="Pre-Primary to Class X"
-          description="Affiliated to MSBSHSE Pune. An intensive academic pathway engineered to cultivate foundational mastery, spoken English fluency, and 100% board examination distinction."
+          eyebrow={t.academics.eyebrow}
+          title={t.academics.title}
+          highlightWord={t.academics.highlightWord}
+          description={t.academics.description}
         />
 
         {/* Level Tabs */}
@@ -31,7 +35,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
             flexWrap: 'wrap',
           }}
         >
-          {ACADEMIC_PROGRAMS.map((program) => {
+          {programs.map((program) => {
             const isSelected = activeTab === program.id;
             return (
               <button
@@ -72,7 +76,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
               <span className="badge badge-gold">{activeProgram.grades}</span>
               <span style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', fontWeight: 600 }}>
-                English Medium · Maharashtra State Board
+                {t.academics.curriculumBadge}
               </span>
             </div>
 
@@ -85,7 +89,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
             </p>
 
             <h4 style={{ fontSize: '1.1rem', color: 'var(--color-navy-base)', marginBottom: '0.85rem' }}>
-              Key Pedagogical Focus Areas:
+              {t.academics.keyFocusAreas}
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', marginBottom: '2rem' }}>
               {activeProgram.focusPoints.map((point) => (
@@ -98,7 +102,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
 
             <button onClick={onOpenAdmissionModal} className="btn btn-primary" style={{ width: 'auto' }}>
               <GraduationCap size={18} />
-              <span>Apply for {activeProgram.grades}</span>
+              <span>{t.academics.btnApply}</span>
             </button>
           </div>
 
@@ -118,7 +122,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
                 <BookOpen size={20} color="var(--color-navy-base)" />
                 <h4 style={{ fontSize: '1.15rem', color: 'var(--color-navy-base)', margin: 0 }}>
-                  Curriculum & Subjects
+                  {t.academics.subjectsOffered}
                 </h4>
               </div>
 
@@ -155,7 +159,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
                 color: 'var(--color-text-muted)',
               }}
             >
-              Includes continuous unit tests, drawing grade prep, handwriting, and digital audio-visual lessons.
+              {t.academics.curriculumDesc}
             </div>
           </div>
         </div>
@@ -174,10 +178,10 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
             <ClipboardCheck size={24} color="var(--color-navy-base)" />
             <div>
               <h4 style={{ fontSize: '1.3rem', color: 'var(--color-navy-base)', margin: 0 }}>
-                {EXAM_PATTERN.title}
+                {t.academics.evaluationTitle}
               </h4>
               <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', margin: 0 }}>
-                Standard evaluation schedule for Std. I to IX leading into Class X SSC Board Examinations.
+                {t.academics.evaluationDesc}
               </p>
             </div>
           </div>
@@ -189,7 +193,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
               gap: '1rem',
             }}
           >
-            {EXAM_PATTERN.structure.map((item) => (
+            {t.academics.examSchedule.map((item) => (
               <div
                 key={item.exam}
                 style={{
@@ -229,7 +233,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenAdmiss
               gap: '0.5rem',
             }}
           >
-            <span>{EXAM_PATTERN.boardGrade}</span>
+            <span>{t.hero.stats.passRate}: Class X MSBSHSE</span>
             <span style={{ color: 'var(--color-gold-base)' }}>100% Pass Percentage Record</span>
           </div>
         </div>

@@ -2,20 +2,32 @@ import React from 'react';
 import { Star, Quote } from 'lucide-react';
 import { TESTIMONIALS } from '../../data/schoolData';
 import { SectionHeader } from '../common/SectionHeader';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const TestimonialsSection: React.FC = () => {
+  const { t } = useLanguage();
+
+  const localizedTestimonials = t.testimonials.items.map((item) => {
+    const original = TESTIMONIALS.find((test) => test.id === item.id) || TESTIMONIALS[0];
+    return {
+      ...item,
+      rating: original.rating,
+      avatar: original.avatar,
+    };
+  });
+
   return (
     <section className="section section-alt">
       <div className="container">
         <SectionHeader
-          eyebrow="Parent Testimonials"
-          title="Voices of Our School Community"
-          highlightWord="Community"
-          description="Read how Nation English Medium School has nurtured confidence, academic rigor, and character in our students."
+          eyebrow={t.testimonials.eyebrow}
+          title={t.testimonials.title}
+          highlightWord={t.testimonials.highlightWord}
+          description={t.testimonials.description}
         />
 
         <div className="grid-3">
-          {TESTIMONIALS.map((test) => (
+          {localizedTestimonials.map((test) => (
             <div
               key={test.id}
               className="card"
